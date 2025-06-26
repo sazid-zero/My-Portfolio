@@ -27,8 +27,8 @@ export default function ContactSectionStatic() {
     // Simulate form submission (replace with your preferred service)
     // You can integrate with Formspree, Netlify Forms, or EmailJS
     try {
-      // Example with Formspree (replace with your form endpoint)
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      // Using Vercel serverless function
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
