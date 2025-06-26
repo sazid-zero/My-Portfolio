@@ -6,22 +6,22 @@ export default function TestimonialsSection() {
 
   const testimonials = [
     {
-      content: "Alex's attention to detail and technical expertise made our project a huge success. Their React.js skills are exceptional, and they always deliver clean, maintainable code.",
-      name: "Sarah Johnson",
+      content: "Sharif's attention to detail and technical expertise made our project a huge success. Their React.js skills are exceptional, and they always deliver clean, maintainable code.",
+      name: "Sharmin Akther",
       role: "Senior Frontend Developer",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100"
+      avatar: "/src/assets/testimonials/sharmin.jpg"
     },
     {
-      content: "Working with Alex was a pleasure. They bring creativity and technical excellence together, creating user interfaces that are both beautiful and highly functional.",
-      name: "Mike Chen",
+      content: "Working with Sharif was a pleasure. They bring creativity and technical excellence together, creating user interfaces that are both beautiful and highly functional.",
+      name: "Shafayat Mahmud",
       role: "Product Manager", 
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100"
+      avatar: "/src/assets/testimonials/shafayat.jpg"
     },
     {
-      content: "Alex's problem-solving skills and dedication to learning new technologies make them an invaluable team member. Highly recommended for any frontend development project.",
-      name: "Emily Rodriguez",
+      content: "Sharif's problem-solving skills and dedication to learning new technologies make them an invaluable team member. Highly recommended for any frontend development project.",
+      name: "Sumaya Jui",
       role: "UX Designer",
-      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100"
+      avatar: "/src/assets/testimonials/jui.jpg"
     }
   ];
 
@@ -106,7 +106,7 @@ export default function TestimonialsSection() {
                   whileHover={{ scale: 1.1 }}
                   src={testimonial.avatar}
                   alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover"
+                  className="w-12 h-12 rounded-full object-cover border-red-500"
                 />
                 <div>
                   <div className="font-semibold">{testimonial.name}</div>

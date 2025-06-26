@@ -53,9 +53,9 @@ export default function ContactSection() {
   };
 
   const contactInfo = [
-    { icon: 'fas fa-envelope', label: 'Email', value: 'alex.chen@example.com' },
-    { icon: 'fas fa-phone', label: 'Phone', value: '+1 (555) 123-4567' },
-    { icon: 'fas fa-map-marker-alt', label: 'Location', value: 'San Francisco, CA' }
+    { icon: 'fas fa-envelope', label: 'Email', value: 'sharif.sazid.3@gmail.com' },
+    { icon: 'fas fa-phone', label: 'Phone', value: '+880 18722-83211' },
+    { icon: 'fas fa-map-marker-alt', label: 'Location', value: 'Sylhet, Bangladesh' }
   ];
 
   const quickLinks = [

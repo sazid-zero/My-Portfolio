@@ -9,7 +9,8 @@ export default function SkillsSection() {
     { name: 'TailwindCSS', level: 90, icon: 'fab fa-css3-alt', color: 'from-secondary to-primary' },
     { name: 'JavaScript/ES6+', level: 88, icon: 'fab fa-js-square', color: 'from-yellow-400 to-accent' },
     { name: 'Node.js', level: 82, icon: 'fab fa-node-js', color: 'from-green-400 to-primary' },
-    { name: 'Python', level: 85, icon: 'fab fa-python', color: 'from-blue-400 to-secondary' }
+    { name: 'Python', level: 85, icon: 'fab fa-python', color: 'from-blue-400 to-secondary' },
+    { name: 'Java', level: 90, icon: 'fab fa-java' , color: 'from-red-400 to-purple-400'}
   ];
 
   const tools = [

@@ -15,7 +15,7 @@ export default function AboutSection() {
     { icon: 'fab fa-github', href: 'https://github.com', label: 'GitHub' },
     { icon: 'fab fa-linkedin', href: 'https://linkedin.com', label: 'LinkedIn' },
     { icon: 'fab fa-twitter', href: 'https://twitter.com', label: 'Twitter' },
-    { icon: 'fas fa-envelope', href: 'mailto:alex.chen@example.com', label: 'Email' }
+    { icon: 'fas fa-envelope', href: 'mailto:sharif.sazid.3@gmail.com', label: 'Email' }
   ];
 
   return (

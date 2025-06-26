@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Navigation from '@/components/navigation';
 import HeroSection from '@/components/hero-section';
 import AboutSection from '@/components/about-section';
+import ProfileSection from '@/components/profile-section';
 import ProjectsSection from '@/components/projects-section';
 import SkillsSection from '@/components/skills-section';
 import TestimonialsSection from '@/components/testimonials-section';
@@ -41,6 +42,7 @@ export default function Portfolio() {
       <Navigation />
       <HeroSection />
       <AboutSection />
+      <ProfileSection />
       <ProjectsSection />
       <SkillsSection />
       <TestimonialsSection />
@@ -54,7 +56,7 @@ export default function Portfolio() {
               className="text-3xl font-bold text-gradient mb-4"
               whileHover={{ scale: 1.05 }}
             >
-              Alex Chen<span className="text-accent">.</span>
+              Sharif Mahmud Sazid<span className="text-accent">.</span>
             </motion.div>
             <p className="text-gray-400 mb-8">
               Building the future, one line of code at a time
@@ -82,7 +84,7 @@ export default function Portfolio() {
             </div>
 
             <div className="text-gray-500 text-sm">
-              © 2024 Alex Chen. Built with React.js & TailwindCSS
+              © 2024 Sharif Mahmud. Built with React.js & TailwindCSS
             </div>
           </div>
         </div>

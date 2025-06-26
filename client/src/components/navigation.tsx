@@ -38,12 +38,12 @@ export default function Navigation() {
             className="text-2xl font-bold text-gradient cursor-pointer"
             onClick={() => scrollToSection('home')}
           >
-            AC<span className="text-accent">.</span>
+            A.S.M<span className="text-accent">.</span>
           </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((item) => (
+            {['Home', 'About', 'Profile', 'Projects', 'Skills', 'Contact'].map((item) => (
               <motion.button
                 key={item}
                 whileHover={{ scale: 1.1 }}
@@ -74,7 +74,7 @@ export default function Navigation() {
             className="md:hidden mt-4 glass-morphism rounded-lg p-4"
           >
             <div className="flex flex-col space-y-4">
-              {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((item) => (
+              {['Home', 'About', 'Profile', 'Projects', 'Skills', 'Contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
