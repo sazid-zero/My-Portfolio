@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
+import  defaultProfileImage  from '@/assets/profile/your-photo.jpg';
 
 export default function ProfileSection() {
   const scrollRevealRef = useScrollReveal();
@@ -71,7 +72,7 @@ export default function ProfileSection() {
                   <div className="gradient-border p-1 rounded-3xl">
                     <div className="bg-slate-deep rounded-3xl p-2">
                       <img
-                        src="/src/assets/profile/your-photo.jpg" // Replace with your photo
+                        src={defaultProfileImage}
                         alt="Sharif Mahmud - Full Stack Developer"
                         className="w-full h-96 object-cover rounded-2xl shadow-2xl group-hover:shadow-primary/20 transition-all duration-500"
                       />

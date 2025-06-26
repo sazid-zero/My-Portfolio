@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
+import { testimonialAvatars } from '@/assets/testimonials/images';
 
 export default function TestimonialsSection() {
   const scrollRevealRef = useScrollReveal();
@@ -9,19 +10,19 @@ export default function TestimonialsSection() {
       content: "Sharif's attention to detail and technical expertise made our project a huge success. Their React.js skills are exceptional, and they always deliver clean, maintainable code.",
       name: "Sharmin Akther",
       role: "Senior Frontend Developer",
-      avatar: "/src/assets/testimonials/sharmin.jpg"
+      avatar: testimonialAvatars.avatar1
     },
     {
       content: "Working with Sharif was a pleasure. They bring creativity and technical excellence together, creating user interfaces that are both beautiful and highly functional.",
       name: "Shafayat Mahmud",
       role: "Product Manager", 
-      avatar: "/src/assets/testimonials/shafayat.jpg"
+      avatar: testimonialAvatars.avatar2
     },
     {
       content: "Sharif's problem-solving skills and dedication to learning new technologies make them an invaluable team member. Highly recommended for any frontend development project.",
       name: "Sumaya Jui",
       role: "UX Designer",
-      avatar: "/src/assets/testimonials/jui.jpg"
+      avatar: testimonialAvatars.avatar3
     }
   ];
 
