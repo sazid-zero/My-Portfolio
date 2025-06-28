@@ -92,7 +92,7 @@ export default function ContactSectionStatic() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+             viewport={{ amount:0.3 }}
           >
             Let's <span className="text-gradient">Connect</span>
           </motion.h2>
@@ -101,7 +101,7 @@ export default function ContactSectionStatic() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
+             viewport={{ amount:0.3 }}
           >
             Ready to collaborate? Let's build something amazing together
           </motion.p>
@@ -113,7 +113,7 @@ export default function ContactSectionStatic() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ amount:0.3 }}
             className="scroll-reveal"
           >
             <div className="space-y-8">
@@ -126,7 +126,7 @@ export default function ContactSectionStatic() {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      viewport={{ once: true }}
+                       viewport={{ amount:0.3 }}
                       className="flex items-center gap-4"
                     >
                       <div className="glass-morphism p-3 rounded-lg">
@@ -154,7 +154,7 @@ export default function ContactSectionStatic() {
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
-                      viewport={{ once: true }}
+                       viewport={{ amount:0.3 }}
                       whileHover={{ scale: 1.05, x: 5 }}
                       className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 transition-colors"
                     >
@@ -172,7 +172,7 @@ export default function ContactSectionStatic() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ amount:0.3 }}
             className="scroll-reveal"
           >
             <form onSubmit={handleSubmit} className="glass-morphism p-8 rounded-2xl hover-lift">
@@ -205,7 +205,7 @@ export default function ContactSectionStatic() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    viewport={{ once: true }}
+                     viewport={{ amount:0.3 }}
                   >
                     <label className="block text-sm font-semibold mb-2" htmlFor="name">
                       Name
@@ -225,7 +225,7 @@ export default function ContactSectionStatic() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    viewport={{ once: true }}
+                     viewport={{ amount:0.3 }}
                   >
                     <label className="block text-sm font-semibold mb-2" htmlFor="email">
                       Email
@@ -247,7 +247,7 @@ export default function ContactSectionStatic() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  viewport={{ once: true }}
+                   viewport={{ amount:0.3 }}
                 >
                   <label className="block text-sm font-semibold mb-2" htmlFor="subject">
                     Subject
@@ -268,7 +268,7 @@ export default function ContactSectionStatic() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  viewport={{ once: true }}
+                   viewport={{ amount:0.3 }}
                 >
                   <label className="block text-sm font-semibold mb-2" htmlFor="message">
                     Message
@@ -293,7 +293,7 @@ export default function ContactSectionStatic() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  viewport={{ once: true }}
+                   viewport={{ amount:0.3 }}
                   className="w-full gradient-border p-[2px] rounded-full group disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <div className="bg-slate-deep px-8 py-4 rounded-full group-hover:bg-transparent transition-all duration-300 flex items-center justify-center gap-2">

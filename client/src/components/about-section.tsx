@@ -39,7 +39,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ amount:0.3 }}
           >
             <span className="text-gradient">About</span> Me
           </motion.h2>
@@ -48,7 +48,7 @@ export default function AboutSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ amount:0.3 }}
           >
             A passionate Computer Science student with a love for creating beautiful, functional web applications
           </motion.p>
@@ -60,7 +60,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ amount:0.3 }}
             className="scroll-reveal"
           >
             <div className="glass-morphism p-8 rounded-2xl hover-lift">
@@ -105,7 +105,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ amount:0.3 }}
             className="scroll-reveal"
           >
             <div className="grid grid-cols-2 gap-6">

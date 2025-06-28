@@ -46,7 +46,7 @@ export default function ProfileSection() {
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+               viewport={{ amount:0.3 }}
               className="relative"
             >
               <div className="relative">
@@ -115,7 +115,7 @@ export default function ProfileSection() {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+               viewport={{ amount:0.3 }}
               className="space-y-8"
             >
               <div>
@@ -124,7 +124,7 @@ export default function ProfileSection() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
+                   viewport={{ amount:0.3 }}
                 >
                   Meet <span className="text-gradient">Sharif Mahmud Sazid</span>
                 </motion.h2>
@@ -134,7 +134,7 @@ export default function ProfileSection() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  viewport={{ once: true }}
+                   viewport={{ amount:0.3 }}
                 >
                   <span className="text-accent font-mono">&lt;</span>
                   <span>Creative Developer & Problem Solver</span>
@@ -148,7 +148,7 @@ export default function ProfileSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
+                 viewport={{ amount:0.3 }}
               >
                 {[
                   { label: 'Location', value: 'sylhet, Bangladesh', icon: 'fas fa-map-marker-alt' },
@@ -173,7 +173,7 @@ export default function ProfileSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                viewport={{ once: true }}
+                 viewport={{ amount:0.3 }}
                 className="glass-morphism p-6 rounded-2xl"
               >
                 <h3 className="text-xl font-bold mb-4 text-gradient">What Drives Me</h3>
@@ -199,7 +199,7 @@ export default function ProfileSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                viewport={{ once: true }}
+                 viewport={{ amount:0.3 }}
               >
                 <motion.button
                   whileHover={{ scale: 1.05 }}

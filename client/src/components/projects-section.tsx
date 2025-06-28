@@ -61,7 +61,7 @@ export default function ProjectsSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ amount:0.3 }}
           >
             Featured <span className="text-gradient">Projects</span>
           </motion.h2>
@@ -70,7 +70,7 @@ export default function ProjectsSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
+             viewport={{ amount:0.3 }}
           >
             A showcase of my best work, from concept to deployment
           </motion.p>
@@ -83,7 +83,7 @@ export default function ProjectsSection() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              viewport={{ once: true }}
+              viewport={{ amount:0.3 }}
               className="group scroll-reveal"
             >
               <div className="glass-morphism rounded-2xl overflow-hidden hover-lift">
@@ -162,7 +162,7 @@ export default function ProjectsSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          viewport={{ amount:0.3 }}
         >
           <motion.a
             whileHover={{ scale: 1.05 }}
