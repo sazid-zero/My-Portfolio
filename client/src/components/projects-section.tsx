@@ -1,43 +1,13 @@
+
 import { motion } from 'framer-motion';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
+import { getFeaturedProjects } from '@/data/projects';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProjectsSection() {
   const scrollRevealRef = useScrollReveal();
-
-  const projects = [
-    {
-      title: 'ShopSphere - E-Commerce Platform',
-      description: 'A modern e-commerce platform with advanced filtering, real-time inventory, and seamless checkout experience. Built with React.js and integrated payment processing.',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400',
-      technologies: ['React', 'TailwindCSS', 'Node.js'],
-      githubUrl: 'https://github.com',
-      liveUrl: 'https://example.com'
-    },
-    {
-      title: 'TaskFlow - Project Management',
-      description: 'Collaborative task management with real-time updates, drag-and-drop functionality, and team collaboration features. Inspired by modern productivity tools.',
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400',
-      technologies: ['React', 'TypeScript', 'Firebase'],
-      githubUrl: 'https://github.com',
-      liveUrl: 'https://example.com'
-    },
-    {
-      title: 'WeatherVue - Smart Dashboard',
-      description: 'Intelligent weather dashboard with location-based forecasts, interactive charts, and beautiful animations that reflect current weather conditions.',
-      image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400',
-      technologies: ['Vue.js', 'Weather API', 'Chart.js'],
-      githubUrl: 'https://github.com',
-      liveUrl: 'https://example.com'
-    },
-    {
-      title: 'SocialPulse - Analytics Dashboard',
-      description: 'Comprehensive social media analytics platform with real-time data visualization, engagement tracking, and automated reporting features.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400',
-      technologies: ['React', 'D3.js', 'Express'],
-      githubUrl: 'https://github.com',
-      liveUrl: 'https://example.com'
-    }
-  ];
+  const navigate = useNavigate();
+  const projects = getFeaturedProjects();
 
   const techColors = {
     'React': 'bg-primary/80',
@@ -49,7 +19,21 @@ export default function ProjectsSection() {
     'Weather API': 'bg-secondary/80',
     'Chart.js': 'bg-accent/80',
     'D3.js': 'bg-secondary/80',
-    'Express': 'bg-accent/80'
+    'Express': 'bg-accent/80',
+    'MongoDB': 'bg-primary/80',
+    'Stripe': 'bg-accent/80',
+    'Socket.io': 'bg-secondary/80',
+    'PostgreSQL': 'bg-primary/80',
+    'PWA': 'bg-accent/80',
+    'OAuth': 'bg-secondary/80'
+  };
+
+  const handleViewDetails = (projectId: string) => {
+    navigate(`/projects/${projectId}`);
+  };
+
+  const handleViewAllProjects = () => {
+    navigate('/projects');
   };
 
   return (
@@ -79,7 +63,7 @@ export default function ProjectsSection() {
         <div className="grid lg:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <motion.div
-              key={index}
+              key={project.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
@@ -97,8 +81,8 @@ export default function ProjectsSection() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-deep/80 to-transparent"></div>
                   <div className="absolute bottom-4 left-4">
-                    <div className="flex gap-2">
-                      {project.technologies.map((tech, techIndex) => (
+                    <div className="flex gap-2 flex-wrap">
+                      {project.technologies.slice(0, 3).map((tech, techIndex) => (
                         <span
                           key={techIndex}
                           className={`px-3 py-1 ${techColors[tech as keyof typeof techColors] || 'bg-primary/80'} rounded-full text-xs font-semibold`}
@@ -106,6 +90,11 @@ export default function ProjectsSection() {
                           {tech}
                         </span>
                       ))}
+                      {project.technologies.length > 3 && (
+                        <span className="px-3 py-1 bg-gray-600/80 rounded-full text-xs font-semibold">
+                          +{project.technologies.length - 3}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -146,6 +135,7 @@ export default function ProjectsSection() {
                     </div>
                     <motion.button
                       whileHover={{ x: 5 }}
+                      onClick={() => handleViewDetails(project.id)}
                       className="text-accent hover:text-primary transition-colors font-semibold"
                     >
                       View Details →
@@ -164,18 +154,16 @@ export default function ProjectsSection() {
           transition={{ duration: 0.8 }}
           viewport={{ amount:0.3 }}
         >
-          <motion.a
+          <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={handleViewAllProjects}
             className="gradient-border p-[2px] rounded-full group inline-block"
           >
             <div className="bg-slate-deep px-8 py-4 rounded-full group-hover:bg-transparent transition-all duration-300">
               <span className="text-white group-hover:text-white font-semibold">View All Projects</span>
             </div>
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
     </section>
