@@ -11,7 +11,15 @@ import TestimonialsSection from '@/components/testimonials-section';
 import ContactSection from '@/components/contact-section';
 
 export default function Portfolio() {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(() => {
+        // Show preloader on page refresh, skip only when navigating back from other pages
+        const isNavigatingBack = sessionStorage.getItem('navigating-back');
+        if (isNavigatingBack) {
+            sessionStorage.removeItem('navigating-back');
+            return false;
+        }
+        return true;
+    });
 
     const handlePreloaderComplete = () => {
         setIsLoading(false);
