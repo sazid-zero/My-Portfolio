@@ -35,7 +35,7 @@ export default function ContactSection() {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          access_key: "091e1932-32d3-4c22-8957-01ce6022c521",
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
           name: formData.name,
           email: formData.email,
           subject: formData.subject,
