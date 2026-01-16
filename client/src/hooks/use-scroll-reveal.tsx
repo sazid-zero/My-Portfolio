@@ -1,11 +1,19 @@
 import { useEffect, useRef } from 'react';
+import { useIsMobile } from './use-mobile';
 
 export function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
+
+    // On mobile, immediately add the revealed class to avoid animation overhead
+    if (isMobile) {
+      element.classList.add('revealed');
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -26,7 +34,7 @@ export function useScrollReveal() {
     return () => {
       observer.unobserve(element);
     };
-  }, []);
+  }, [isMobile]);
 
   return ref;
 }
