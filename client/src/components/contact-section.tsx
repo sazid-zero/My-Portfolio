@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
-import { useMutation } from '@tanstack/react-query';
-import { apiRequest } from '@/lib/queryClient';
 import { useToast } from '@/hooks/use-toast';
 
 interface ContactFormData {
@@ -21,30 +19,52 @@ export default function ContactSection() {
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const contactMutation = useMutation({
-    mutationFn: async (data: ContactFormData) => {
-      return await apiRequest('POST', '/api/contact', data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Message sent successfully!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: "091e1932-32d3-4c22-8957-01ce6022c521",
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          from_name: "Portfolio Contact Form"
+        }),
       });
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    },
-    onError: (error: any) => {
+
+      const result = await response.json();
+      if (result.success) {
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error(result.message || "Failed to send message");
+      }
+    } catch (error: any) {
       toast({
         title: "Failed to send message",
         description: error.message || "Please try again later.",
         variant: "destructive",
       });
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
     }
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    contactMutation.mutate(formData);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -262,7 +282,7 @@ export default function ContactSection() {
 
                 <motion.button
                   type="submit"
-                  disabled={contactMutation.isPending}
+                  disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -273,9 +293,9 @@ export default function ContactSection() {
                 >
                   <div className="bg-slate-deep px-8 py-4 rounded-full group-hover:bg-transparent transition-all duration-300 flex items-center justify-center gap-2">
                     <span className="text-white group-hover:text-white font-semibold">
-                      {contactMutation.isPending ? 'Sending...' : 'Send Message'}
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
                     </span>
-                    <i className={`fas ${contactMutation.isPending ? 'fa-spinner fa-spin' : 'fa-paper-plane'} group-hover:translate-x-1 transition-transform`}></i>
+                    <i className={`fas ${isSubmitting ? 'fa-spinner fa-spin' : 'fa-paper-plane'} group-hover:translate-x-1 transition-transform`}></i>
                   </div>
                 </motion.button>
               </div>
