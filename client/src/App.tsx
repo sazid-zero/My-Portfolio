@@ -7,6 +7,7 @@ import Portfolio from "@/pages/portfolio";
 import ProjectsPage from "@/pages/projects-page";
 import ProjectDetail from "@/pages/project-detail";
 import NotFound from "@/pages/not-found";
+import { useIsMobile } from "@/hooks/use-mobile";
 import Lenis from "lenis";
 
 function ScrollToTop() {
@@ -20,20 +21,25 @@ function ScrollToTop() {
 }
 
 function App() {
+    const isMobile = useIsMobile();
+
     useEffect(() => {
-    const lenis = new Lenis();
+        // Only initialize Lenis on desktop for better mobile performance
+        if (isMobile) return;
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+        const lenis = new Lenis();
 
-    requestAnimationFrame(raf);
+        function raf(time: number) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
 
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
+        requestAnimationFrame(raf);
+
+        return () => {
+            lenis.destroy();
+        };
+    }, [isMobile]);
     return (
         <QueryClientProvider client={queryClient}>
             <Router>
