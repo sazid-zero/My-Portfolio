@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/lib/queryClient";
@@ -8,13 +8,26 @@ import ProjectsPage from "@/pages/projects-page";
 import ProjectDetail from "@/pages/project-detail";
 import NotFound from "@/pages/not-found";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useScrollRestoration } from "@/hooks/use-scroll-restoration";
 import Lenis from "lenis";
 
 function ScrollToTop() {
     const { pathname } = useLocation();
+    const prevPathnameRef = useRef<string>(pathname);
+    
+    useScrollRestoration();
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        // Check if there's a saved scroll position (indicates back navigation)
+        const savedScrollPosition = sessionStorage.getItem(`scroll-position-${pathname}`);
+        
+        // If no saved position or it's a new page, scroll to top
+        // If there's a saved position, it will be restored by useScrollRestoration hook
+        if (!savedScrollPosition) {
+            window.scrollTo(0, 0);
+        }
+        
+        prevPathnameRef.current = pathname;
     }, [pathname]);
 
     return null;
