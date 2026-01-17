@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 import  defaultProfileImage  from '@/assets/profile/your-photo.jpg';
+import resumePdf from '@/assets/Resume.pdf';
 
 export default function ProfileSection() {
   const scrollRevealRef = useScrollReveal();
@@ -213,8 +214,8 @@ export default function ProfileSection() {
                 </motion.button>
                 
                 <motion.a
-                  href="/src/assets/profile/sazid-resume.pdf"
-                  download
+                  href={resumePdf}
+                  download="Resume.pdf"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="glass-morphism px-6 py-3 rounded-full hover:bg-white/20 transition-all duration-300 text-center flex-1"
