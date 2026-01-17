@@ -153,8 +153,8 @@ export default function ProfileSection() {
               >
                 {[
                   { label: 'Location', value: 'sylhet, Bangladesh', icon: 'fas fa-map-marker-alt' },
-                  { label: 'Experience', value: '2+ Years', icon: 'fas fa-calendar-alt' },
-                  { label: 'Focus', value: 'Frontend & UI/UX', icon: 'fas fa-code' },
+                  { label: 'Experience', value: '1+ Years', icon: 'fas fa-calendar-alt' },
+                  { label: 'Focus', value: 'Full-Stack Development', icon: 'fas fa-code' },
                   { label: 'Availability', value: 'Open to Work', icon: 'fas fa-briefcase' }
                 ].map((fact, index) => (
                   <motion.div
