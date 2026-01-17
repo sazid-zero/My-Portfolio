@@ -9,7 +9,7 @@ export default function TestimonialsSection() {
     {
       content: "Sharif's attention to detail and technical expertise made our project a huge success. Their React.js skills are exceptional, and they always deliver clean, maintainable code.",
       name: "Sharmin Akther",
-      role: "Senior Frontend Developer",
+      role: "Junior Frontend Developer",
       avatar: testimonialAvatars.avatar1
     },
     {
