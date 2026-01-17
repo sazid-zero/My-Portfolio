@@ -25,8 +25,8 @@ export default function SkillsSection() {
   ];
 
   const certifications = [
-    { name: 'AWS Certified Developer Associate', issuer: 'Amazon Web Services', date: '2024' },
-    { name: 'React Developer Certification', issuer: 'Meta', date: '2023' }
+    { name: 'AWS Academy Graduate - Cloud Foundations', issuer: 'Amazon Web Services', date: '2026' },
+    { name: 'AWS Academy Graduate - Cloud Architecture', issuer: 'Amazon Web Services', date: '2026' }
   ];
 
   return (
