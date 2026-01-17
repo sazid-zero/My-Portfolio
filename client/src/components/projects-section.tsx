@@ -71,13 +71,13 @@ export default function ProjectsSection() {
               className="group scroll-reveal"
             >
               <div className="glass-morphism rounded-2xl overflow-hidden hover-lift">
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-64 overflow-hidden ">
                   <motion.img
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.5 }}
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover "
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-deep/80 to-transparent"></div>
                   <div className="absolute bottom-4 left-4">
@@ -101,7 +101,7 @@ export default function ProjectsSection() {
 
                 <div className="p-8">
                   <motion.h3 
-                    className="text-2xl font-bold mb-4 group-hover:text-gradient transition-all duration-300"
+                    className="text-2xl font-bold mb-4 group-hover:text-gradient transition-all duration-300 truncate"
                     whileHover={{ x: 5 }}
                   >
                     {project.title}
