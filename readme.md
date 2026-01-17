@@ -17,6 +17,7 @@ https://my-portfolio-v42.vercel.app/
 - **Frontend**: React 18, TypeScript, Vite
 - **Styling**: TailwindCSS, Radix UI (shadcn/ui), Lucide Icons
 - **Animations**: Framer Motion, GSAP
+- **Smooth Scrolling**: Lenis
 - **Routing**: React Router DOM
 - **Data Fetching**: TanStack Query (React Query)
 - **Forms**: Serverless via Web3Forms API
