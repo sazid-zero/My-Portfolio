@@ -85,7 +85,7 @@ export default function ProjectsSection() {
                       {project.technologies.slice(0, 3).map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className={`px-3 py-1 ${techColors[tech as keyof typeof techColors] || 'bg-primary/80'} rounded-full text-xs font-semibold`}
+                          className={`px-3 py-1 bg-gray-600/80 rounded-full text-xs font-semibold`}
                         >
                           {tech}
                         </span>

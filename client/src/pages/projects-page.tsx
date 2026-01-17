@@ -147,7 +147,7 @@ export default function ProjectsPage() {
                       )}
                     </div>
                     <div className="absolute bottom-4 left-4">
-                      <span className="bg-primary/80 px-2 py-1 rounded-full text-xs font-semibold">
+                      <span className=" bg-gray-600/80 px-2 py-1 rounded-full text-xs font-semibold">
                         {project.category}
                       </span>
                     </div>
