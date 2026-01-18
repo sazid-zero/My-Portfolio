@@ -37,17 +37,10 @@ function App() {
     const isMobile = useIsMobile();
 
     useEffect(() => {
-      
-        const lenisConfig = isMobile
-            ? {
-                  lerp: 0.1, 
-                  friction: 0.12, 
-                  duration: 1.2, 
-                  easing: (t: number) => t,
-              }
-            : {};
+        // Only initialize Lenis on desktop for better mobile performance
+        if (isMobile) return;
 
-        const lenis = new Lenis(lenisConfig);
+        const lenis = new Lenis();
 
         function raf(time: number) {
             lenis.raf(time);
