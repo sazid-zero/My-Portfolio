@@ -101,7 +101,7 @@ export default function ProjectsSection() {
 
                 <div className="p-4 sm:p-6 md:p-8 flex-1 flex flex-col">
                   <motion.h3 
-                    className="text-lg sm:text-xl md:text-2xl font-bold mb-3 md:mb-4 group-hover:text-gradient transition-all duration-300 truncate"
+                    className="text-lg sm:text-xl md:text-2xl font-bold mb-3 md:mb-4 group-hover:text-gradient transition-all duration-300 truncate cursor-pointer"
                     whileHover={{ x: 5 }}
                     onClick={() => handleViewDetails(project.id)}
                   >

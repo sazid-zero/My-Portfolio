@@ -155,7 +155,7 @@ export default function ProjectsPage() {
 
                   <div className="p-6 flex-1 flex flex-col">
                     <motion.h3 
-                      className="text-xl font-bold mb-3 group-hover:text-gradient transition-all duration-300"
+                      className="text-xl font-bold mb-3 group-hover:text-gradient transition-all duration-300 cursor-pointer"
                       whileHover={{ x: 5 }}
                       onClick={() => handleViewDetails(project.id)}
                     >
