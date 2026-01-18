@@ -52,7 +52,6 @@ export default function ProjectsPage() {
   };
 
   const handleBackToPortfolio = () => {
-    sessionStorage.setItem('navigating-back', 'true');
     navigate('/');
   };
 

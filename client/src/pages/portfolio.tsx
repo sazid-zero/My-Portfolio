@@ -12,12 +12,13 @@ import ContactSection from '@/components/contact-section';
 
 export default function Portfolio() {
     const [isLoading, setIsLoading] = useState(() => {
-        // Show preloader on page refresh, skip only when navigating back from other pages
-        const isNavigatingBack = sessionStorage.getItem('navigating-back');
-        if (isNavigatingBack) {
-            sessionStorage.removeItem('navigating-back');
+        // Show preloader only on the very first visit in this session
+        const hasShownPreloader = sessionStorage.getItem('preloader-shown');
+        if (hasShownPreloader) {
             return false;
         }
+        // Mark that preloader has been shown
+        sessionStorage.setItem('preloader-shown', 'true');
         return true;
     });
 
@@ -44,6 +45,21 @@ export default function Portfolio() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    // Handle scrolling to sections when returning from other pages
+    useEffect(() => {
+        const sectionId = sessionStorage.getItem('scrollToSection');
+        if (sectionId) {
+            sessionStorage.removeItem('scrollToSection');
+            // Use setTimeout to ensure DOM is ready
+            setTimeout(() => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        }
+    }, [isLoading]);
 
     const scrollToTop = () => {
         window.scrollTo({
