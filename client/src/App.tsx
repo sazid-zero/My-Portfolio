@@ -37,18 +37,8 @@ function App() {
     const isMobile = useIsMobile();
 
     useEffect(() => {
-    
-        const lenisConfig = isMobile
-            ? {
-                  lerp: 0.05,  
-                  duration: 1.2, 
-                  easing: (t: number) => t,
-                  smoothWheel: false,
-                  smoothTouch: true
-              }
-            : {};
 
-        const lenis = new Lenis(lenisConfig);
+        const lenis = new Lenis();
 
         function raf(time: number) {
             lenis.raf(time);
@@ -60,7 +50,7 @@ function App() {
         return () => {
             lenis.destroy();
         };
-    }, [isMobile]);
+    }, []);
     return (
         <QueryClientProvider client={queryClient}>
             <Router>
