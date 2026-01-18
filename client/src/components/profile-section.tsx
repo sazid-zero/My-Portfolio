@@ -1,16 +1,17 @@
-import { motion } from 'framer-motion';
+import { useMotionComponents } from '@/hooks/use-motion-components';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 import  defaultProfileImage  from '@/assets/profile/your-photo.jpg';
 import resumePdf from '@/assets/Resume.pdf';
 
 export default function ProfileSection() {
+  const Motion = useMotionComponents();
   const scrollRevealRef = useScrollReveal();
 
   return (
     <section id="profile" className="py-32 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
-        <motion.div
+        <Motion.div
           animate={{ 
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.6, 0.3],
@@ -23,7 +24,7 @@ export default function ProfileSection() {
           }}
           className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl"
         />
-        <motion.div
+        <Motion.div
           animate={{ 
             scale: [1, 1.1, 1],
             opacity: [0.4, 0.7, 0.4],
@@ -43,7 +44,7 @@ export default function ProfileSection() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             
             {/* Profile Photo Section */}
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -52,19 +53,19 @@ export default function ProfileSection() {
             >
               <div className="relative">
                 {/* Decorative Elements Around Photo */}
-                <motion.div
+                <Motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   className="absolute -top-8 -left-8 w-16 h-16 border-2 border-primary/30 rounded-full"
                 />
-                <motion.div
+                <Motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                   className="absolute -bottom-6 -right-6 w-12 h-12 bg-gradient-to-r from-secondary/40 to-accent/40 rounded-lg rotate-45"
                 />
                 
                 {/* Main Photo Container */}
-                <motion.div
+                <Motion.div
                   whileHover={{ scale: 1.05, rotate: 2 }}
                   transition={{ duration: 0.3 }}
                   className="relative group"
@@ -81,21 +82,21 @@ export default function ProfileSection() {
                       {/* Overlay with floating elements */}
                       <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-slate-deep/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div className="absolute bottom-4 left-4 right-4">
-                          <motion.div
+                          <Motion.div
                             initial={{ y: 20, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
                             className="glass-morphism p-4 rounded-lg"
                           >
                             <div className="text-sm font-semibold text-gradient">Available for Projects</div>
                             <div className="text-xs text-gray-300">Let's build something amazing together</div>
-                          </motion.div>
+                          </Motion.div>
                         </div>
                       </div>
                     </div>
                   </div>
                   
                   {/* Floating Status Badge */}
-                  <motion.div
+                  <Motion.div
                     animate={{ y: [0, -10, 0] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                     className="absolute -top-4 -right-4"
@@ -106,13 +107,13 @@ export default function ProfileSection() {
                         <span className="text-xs font-semibold">Online</span>
                       </div>
                     </div>
-                  </motion.div>
-                </motion.div>
+                  </Motion.div>
+                </Motion.div>
               </div>
-            </motion.div>
+            </Motion.div>
 
             {/* Profile Content */}
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -120,7 +121,7 @@ export default function ProfileSection() {
               className="space-y-8"
             >
               <div>
-                <motion.h2 
+                <Motion.h2 
                   className="text-5xl md:text-6xl font-bold mb-6"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -128,9 +129,9 @@ export default function ProfileSection() {
                    viewport={{ amount:0.3 }}
                 >
                   Meet <span className="text-gradient">Sharif Mahmud Sazid</span>
-                </motion.h2>
+                </Motion.h2>
                 
-                <motion.div 
+                <Motion.div 
                   className="text-xl text-gray-300 mb-6"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -140,11 +141,11 @@ export default function ProfileSection() {
                   <span className="text-accent font-mono">&lt;</span>
                   <span>Creative Developer & Problem Solver</span>
                   <span className="text-accent font-mono">/&gt;</span>
-                </motion.div>
+                </Motion.div>
               </div>
 
               {/* Quick Facts */}
-              <motion.div 
+              <Motion.div 
                 className="grid grid-cols-2 gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -157,7 +158,7 @@ export default function ProfileSection() {
                   { label: 'Focus', value: 'Full-Stack Development', icon: 'fas fa-code' },
                   { label: 'Availability', value: 'Open to Work', icon: 'fas fa-briefcase' }
                 ].map((fact, index) => (
-                  <motion.div
+                  <Motion.div
                     key={index}
                     whileHover={{ scale: 1.05, y: -2 }}
                     className="glass-morphism p-4 rounded-xl text-center hover-lift"
@@ -165,12 +166,12 @@ export default function ProfileSection() {
                     <i className={`${fact.icon} text-primary text-lg mb-2 block`}></i>
                     <div className="text-sm text-gray-400">{fact.label}</div>
                     <div className="font-semibold">{fact.value}</div>
-                  </motion.div>
+                  </Motion.div>
                 ))}
-              </motion.div>
+              </Motion.div>
 
               {/* Personality Traits */}
-              <motion.div
+              <Motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -192,17 +193,17 @@ export default function ProfileSection() {
                     <span>Love collaborating with creative teams</span>
                   </div>
                 </div>
-              </motion.div>
+              </Motion.div>
 
               {/* Call to Action */}
-              <motion.div 
+              <Motion.div 
                 className="flex flex-col sm:flex-row gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
                  viewport={{ amount:0.3 }}
               >
-                <motion.button
+                <Motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
@@ -211,9 +212,9 @@ export default function ProfileSection() {
                   <div className="bg-slate-deep px-6 py-3 rounded-full group-hover:bg-transparent transition-all duration-300 text-center">
                     <span className="text-white group-hover:text-white font-semibold">Let's Work Together</span>
                   </div>
-                </motion.button>
+                </Motion.button>
                 
-                <motion.a
+                <Motion.a
                   href={resumePdf}
                   download="Resume.pdf"
                   whileHover={{ scale: 1.05 }}
@@ -221,9 +222,9 @@ export default function ProfileSection() {
                   className="glass-morphism px-6 py-3 rounded-full hover:bg-white/20 transition-all duration-300 text-center flex-1"
                 >
                   Download Resume
-                </motion.a>
-              </motion.div>
-            </motion.div>
+                </Motion.a>
+              </Motion.div>
+            </Motion.div>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useMotionComponents } from '@/hooks/use-motion-components';
 import Navigation from '@/components/navigation';
 import Preloader from '@/components/preloader';
 import HeroSection from '@/components/hero-section';
@@ -11,6 +11,7 @@ import TestimonialsSection from '@/components/testimonials-section';
 import ContactSection from '@/components/contact-section';
 
 export default function Portfolio() {
+    const Motion = useMotionComponents();
     const [isLoading, setIsLoading] = useState(() => {
         // Show preloader only on the very first visit in this session
         const hasShownPreloader = sessionStorage.getItem('preloader-shown');
@@ -72,7 +73,7 @@ export default function Portfolio() {
         <>
             {isLoading && <Preloader onComplete={handlePreloaderComplete} />}
 
-            <motion.div
+            <Motion.div
                 className="min-h-screen bg-slate-deep text-slate-light"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: isLoading ? 0 : 1 }}
@@ -91,12 +92,12 @@ export default function Portfolio() {
                 <footer className="bg-slate-900 py-12 border-t border-gray-800">
                     <div className="max-w-7xl mx-auto px-6">
                         <div className="text-center">
-                            <motion.div
+                            <Motion.div
                                 className="text-3xl font-bold text-gradient mb-4"
                                 whileHover={{ scale: 1.05 }}
                             >
                                 Sharif Mahmud Sazid<span className="text-accent">.</span>
-                            </motion.div>
+                            </Motion.div>
                             <p className="text-gray-400 mb-8">
                                 Building the future, one line of code at a time
                             </p>
@@ -108,7 +109,7 @@ export default function Portfolio() {
                                     { icon: 'fab fa-twitter', href: 'https://twitter.com' },
                                     { icon: 'fab fa-instagram', href: 'https://instagram.com' }
                                 ].map((social, index) => (
-                                    <motion.a
+                                    <Motion.a
                                         key={index}
                                         href={social.href}
                                         target="_blank"
@@ -118,7 +119,7 @@ export default function Portfolio() {
                                         className="glass-morphism p-3 rounded-lg hover:bg-primary/20 transition-all duration-300 group"
                                     >
                                         <i className={`${social.icon} text-xl group-hover:text-primary transition-colors`}></i>
-                                    </motion.a>
+                                    </Motion.a>
                                 ))}
                             </div>
 
@@ -130,7 +131,7 @@ export default function Portfolio() {
                 </footer>
 
                 {/* Scroll to Top Button */}
-                <motion.button
+                <Motion.button
                     id="scrollTop"
                     onClick={scrollToTop}
                     whileHover={{ scale: 1.1 }}
@@ -138,8 +139,8 @@ export default function Portfolio() {
                     className="fixed bottom-8 right-8 glass-morphism p-4 rounded-full opacity-0 invisible transition-all duration-300 hover:bg-primary/20 z-50"
                 >
                     <i className="fas fa-arrow-up text-xl text-primary"></i>
-                </motion.button>
-            </motion.div>
+                </Motion.button>
+            </Motion.div>
         </>
     );
 }

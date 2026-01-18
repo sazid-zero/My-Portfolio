@@ -1,7 +1,8 @@
-import { motion } from 'framer-motion';
+import { useMotionComponents } from '@/hooks/use-motion-components';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 
 export default function AboutSection() {
+  const Motion = useMotionComponents();
   const scrollRevealRef = useScrollReveal();
 
   const stats = [
@@ -34,7 +35,7 @@ export default function AboutSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div ref={scrollRevealRef} className="text-center mb-20 scroll-reveal">
-          <motion.h2 
+          <Motion.h2
             className="text-5xl md:text-6xl font-bold mb-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -42,8 +43,8 @@ export default function AboutSection() {
             viewport={{ amount:0.3 }}
           >
             <span className="text-gradient">About</span> Me
-          </motion.h2>
-          <motion.p 
+          </Motion.h2>
+          <Motion.p 
             className="text-xl text-gray-400 max-w-3xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -51,12 +52,12 @@ export default function AboutSection() {
             viewport={{ amount:0.3 }}
           >
             A passionate Computer Science student with a love for creating beautiful, functional web applications
-          </motion.p>
+          </Motion.p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Profile Content */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -84,7 +85,7 @@ export default function AboutSection() {
 
               <div className="mt-8 flex flex-wrap gap-4">
                 {socialLinks.map((link, index) => (
-                  <motion.a
+                  <Motion.a
                     key={index}
                     href={link.href}
                     target="_blank"
@@ -94,14 +95,14 @@ export default function AboutSection() {
                     className="glass-morphism p-3 rounded-lg hover:bg-primary/20 transition-all duration-300 group"
                   >
                     <i className={`${link.icon} text-xl group-hover:text-primary transition-colors`}></i>
-                  </motion.a>
+                  </Motion.a>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </Motion.div>
 
           {/* Profile Stats */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -110,17 +111,17 @@ export default function AboutSection() {
           >
             <div className="grid grid-cols-2 gap-6">
               {stats.map((stat, index) => (
-                <motion.div
+                <Motion.div
                   key={index}
                   whileHover={{ scale: 1.05, y: -5 }}
                   className="glass-morphism p-6 rounded-xl text-center hover-lift"
                 >
                   <div className="text-4xl font-bold text-gradient mb-2">{stat.count}</div>
                   <div className="text-gray-400">{stat.label}</div>
-                </motion.div>
+                </Motion.div>
               ))}
             </div>
-          </motion.div>
+          </Motion.div>
         </div>
       </div>
     </section>

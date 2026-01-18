@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useMotionComponents } from '@/hooks/use-motion-components';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 
 interface ContactFormData {
@@ -10,6 +10,7 @@ interface ContactFormData {
 }
 
 export default function ContactSectionStatic() {
+  const Motion = useMotionComponents();
   const scrollRevealRef = useScrollReveal();
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
@@ -73,12 +74,12 @@ export default function ContactSectionStatic() {
     <section id="contact" className="py-32 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-deep via-slate-800 to-slate-deep">
-        <motion.div
+        <Motion.div
           animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-20 right-10 w-96 h-96 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl"
         />
-        <motion.div
+        <Motion.div
           animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           className="absolute bottom-20 left-10 w-80 h-80 bg-gradient-to-r from-accent/10 to-primary/10 rounded-full blur-3xl"
@@ -87,7 +88,7 @@ export default function ContactSectionStatic() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div ref={scrollRevealRef} className="text-center mb-20 scroll-reveal">
-          <motion.h2 
+          <Motion.h2 
             className="text-5xl md:text-6xl font-bold mb-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -95,8 +96,8 @@ export default function ContactSectionStatic() {
              viewport={{ amount:0.3 }}
           >
             Let's <span className="text-gradient">Connect</span>
-          </motion.h2>
-          <motion.p 
+          </Motion.h2>
+          <Motion.p 
             className="text-xl text-gray-400 max-w-3xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -104,12 +105,12 @@ export default function ContactSectionStatic() {
              viewport={{ amount:0.3 }}
           >
             Ready to collaborate? Let's build something amazing together
-          </motion.p>
+          </Motion.p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Info */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -121,7 +122,7 @@ export default function ContactSectionStatic() {
                 <h3 className="text-2xl font-bold mb-6 text-gradient">Get In Touch</h3>
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
-                    <motion.div
+                    <Motion.div
                       key={index}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
@@ -136,7 +137,7 @@ export default function ContactSectionStatic() {
                         <div className="font-semibold">{info.label}</div>
                         <div className="text-gray-400">{info.value}</div>
                       </div>
-                    </motion.div>
+                    </Motion.div>
                   ))}
                 </div>
               </div>
@@ -146,7 +147,7 @@ export default function ContactSectionStatic() {
                 <h4 className="text-xl font-bold mb-4 text-accent">Quick Links</h4>
                 <div className="grid grid-cols-2 gap-4">
                   {quickLinks.map((link, index) => (
-                    <motion.a
+                    <Motion.a
                       key={index}
                       href={link.href}
                       target="_blank"
@@ -160,15 +161,15 @@ export default function ContactSectionStatic() {
                     >
                       <i className={`${link.icon} text-accent`}></i>
                       <span>{link.label}</span>
-                    </motion.a>
+                    </Motion.a>
                   ))}
                 </div>
               </div>
             </div>
-          </motion.div>
+          </Motion.div>
 
           {/* Contact Form */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -180,28 +181,28 @@ export default function ContactSectionStatic() {
 
               {/* Status Messages */}
               {submitStatus === 'success' && (
-                <motion.div
+                <Motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-6 p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-300"
                 >
                   Message sent successfully! I'll get back to you soon.
-                </motion.div>
+                </Motion.div>
               )}
               
               {submitStatus === 'error' && (
-                <motion.div
+                <Motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-6 p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300"
                 >
                   Failed to send message. Please try again or contact me directly.
-                </motion.div>
+                </Motion.div>
               )}
 
               <div className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
-                  <motion.div
+                  <Motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
@@ -220,8 +221,8 @@ export default function ContactSectionStatic() {
                       placeholder="Your Name"
                       required
                     />
-                  </motion.div>
-                  <motion.div
+                  </Motion.div>
+                  <Motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
@@ -240,10 +241,10 @@ export default function ContactSectionStatic() {
                       placeholder="your.email@example.com"
                       required
                     />
-                  </motion.div>
+                  </Motion.div>
                 </div>
 
-                <motion.div
+                <Motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
@@ -262,9 +263,9 @@ export default function ContactSectionStatic() {
                     placeholder="Project Collaboration"
                     required
                   />
-                </motion.div>
+                </Motion.div>
 
-                <motion.div
+                <Motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
@@ -283,9 +284,9 @@ export default function ContactSectionStatic() {
                     placeholder="Tell me about your project..."
                     required
                   />
-                </motion.div>
+                </Motion.div>
 
-                <motion.button
+                <Motion.button
                   type="submit"
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
@@ -302,10 +303,10 @@ export default function ContactSectionStatic() {
                     </span>
                     <i className={`fas ${isSubmitting ? 'fa-spinner fa-spin' : 'fa-paper-plane'} group-hover:translate-x-1 transition-transform`}></i>
                   </div>
-                </motion.button>
+                </Motion.button>
               </div>
             </form>
-          </motion.div>
+          </Motion.div>
         </div>
       </div>
     </section>

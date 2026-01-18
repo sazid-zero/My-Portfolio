@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useMotionComponents } from '@/hooks/use-motion-components';
 import { useNavigate } from 'react-router-dom';
 import { getAllProjects, getProjectsByCategory } from '@/data/projects';
 import Navigation from '@/components/navigation';
 
 export default function ProjectsPage() {
+  const Motion = useMotionComponents();
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [displayedProjects, setDisplayedProjects] = useState(getAllProjects());
@@ -63,42 +64,42 @@ export default function ProjectsPage() {
         <div className="max-w-7xl mx-auto px-6">
           {/* Header */}
           <div className="text-center mb-16">
-            <motion.button
+            <Motion.button
               onClick={handleBackToPortfolio}
               whileHover={{ x: -5 }}
               className="inline-flex items-center text-primary hover:text-accent transition-colors mb-8 group"
             >
               <i className="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i>
               Back to Portfolio
-            </motion.button>
+            </Motion.button>
 
-            <motion.h1 
+            <Motion.h1 
               className="text-5xl md:text-7xl font-bold mb-6"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
               All <span className="text-gradient">Projects</span>
-            </motion.h1>
-            <motion.p 
+            </Motion.h1>
+            <Motion.p 
               className="text-xl text-gray-400 max-w-3xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               Explore my complete portfolio of projects across different technologies and domains
-            </motion.p>
+            </Motion.p>
           </div>
 
           {/* Category Filter */}
-          <motion.div 
+          <Motion.div 
             className="flex flex-wrap justify-center gap-4 mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             {categories.map((category) => (
-              <motion.button
+              <Motion.button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 whileHover={{ scale: 1.05 }}
@@ -110,17 +111,17 @@ export default function ProjectsPage() {
                 }`}
               >
                 {category}
-              </motion.button>
+              </Motion.button>
             ))}
-          </motion.div>
+          </Motion.div>
 
           {/* Projects Grid */}
-          <motion.div 
+          <Motion.div 
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             layout
           >
             {displayedProjects.map((project, index) => (
-              <motion.div
+              <Motion.div
                 key={project.id}
                 layout
                 initial={{ opacity: 0, y: 50 }}
@@ -130,7 +131,7 @@ export default function ProjectsPage() {
               >
                 <div className="glass-morphism rounded-2xl overflow-hidden hover-lift h-full flex flex-col">
                   <div className="relative h-48 overflow-hidden">
-                    <motion.img
+                    <Motion.img
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.5 }}
                       src={project.image}
@@ -153,13 +154,13 @@ export default function ProjectsPage() {
                   </div>
 
                   <div className="p-6 flex-1 flex flex-col">
-                    <motion.h3 
+                    <Motion.h3 
                       className="text-xl font-bold mb-3 group-hover:text-gradient transition-all duration-300 cursor-pointer"
                       whileHover={{ x: 5 }}
                       onClick={() => handleViewDetails(project.id)}
                     >
                       {project.title}
-                    </motion.h3>
+                    </Motion.h3>
                     <p className="text-gray-400 mb-4 leading-relaxed flex-1 text-sm">
                       {project.description}
                     </p>
@@ -184,7 +185,7 @@ export default function ProjectsPage() {
                     {/* Actions */}
                     <div className="flex justify-between items-center">
                       <div className="flex gap-3">
-                        <motion.a
+                        <Motion.a
                           whileHover={{ scale: 1.1, y: -2 }}
                           whileTap={{ scale: 0.95 }}
                           href={project.githubUrl}
@@ -193,8 +194,8 @@ export default function ProjectsPage() {
                           className="text-primary hover:text-accent transition-colors"
                         >
                           <i className="fab fa-github text-lg"></i>
-                        </motion.a>
-                        <motion.a
+                        </Motion.a>
+                        <Motion.a
                           whileHover={{ scale: 1.1, y: -2 }}
                           whileTap={{ scale: 0.95 }}
                           href={project.liveUrl}
@@ -203,32 +204,32 @@ export default function ProjectsPage() {
                           className="text-primary hover:text-accent transition-colors"
                         >
                           <i className="fas fa-external-link-alt text-lg"></i>
-                        </motion.a>
+                        </Motion.a>
                       </div>
-                      <motion.button
+                      <Motion.button
                         whileHover={{ x: 5 }}
                         onClick={() => handleViewDetails(project.id)}
                         className="text-accent hover:text-primary transition-colors font-semibold text-sm"
                       >
                         View Details →
-                      </motion.button>
+                      </Motion.button>
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </Motion.div>
             ))}
-          </motion.div>
+          </Motion.div>
 
           {/* No Projects Message */}
           {displayedProjects.length === 0 && (
-            <motion.div 
+            <Motion.div 
               className="text-center py-16"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
             >
               <p className="text-gray-400 text-lg">No projects found in this category.</p>
-            </motion.div>
+            </Motion.div>
           )}
         </div>
       </section>

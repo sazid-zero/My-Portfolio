@@ -1,7 +1,8 @@
-import { motion } from 'framer-motion';
+import { useMotionComponents } from '@/hooks/use-motion-components';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 
 export default function SkillsSection() {
+  const Motion = useMotionComponents();
   const scrollRevealRef = useScrollReveal();
 
   const technicalSkills = [
@@ -43,7 +44,7 @@ export default function SkillsSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div ref={scrollRevealRef} className="text-center mb-20 scroll-reveal">
-          <motion.h2 
+          <Motion.h2 
             className="text-5xl md:text-6xl font-bold mb-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -51,8 +52,8 @@ export default function SkillsSection() {
              viewport={{ amount:0.3 }}
           >
             My <span className="text-gradient">Skills</span>
-          </motion.h2>
-          <motion.p 
+          </Motion.h2>
+          <Motion.p 
             className="text-xl text-gray-400 max-w-3xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -60,12 +61,12 @@ export default function SkillsSection() {
              viewport={{ amount:0.3 }}
           >
             Technologies and tools I use to bring ideas to life
-          </motion.p>
+          </Motion.p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Technical Skills */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -75,7 +76,7 @@ export default function SkillsSection() {
             <h3 className="text-3xl font-bold mb-8 text-gradient">Technical Expertise</h3>
             <div className="space-y-6">
               {technicalSkills.map((skill, index) => (
-                <motion.div
+                <Motion.div
                   key={index}
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -91,7 +92,7 @@ export default function SkillsSection() {
                     <span className="text-primary font-mono">{skill.level}%</span>
                   </div>
                   <div className="w-full bg-slate-700 rounded-full h-2">
-                    <motion.div
+                    <Motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
                       transition={{ duration: 1, delay: index * 0.1 + 0.5 }}
@@ -99,13 +100,13 @@ export default function SkillsSection() {
                       className={`bg-gradient-to-r ${skill.color} h-2 rounded-full`}
                     />
                   </div>
-                </motion.div>
+                </Motion.div>
               ))}
             </div>
-          </motion.div>
+          </Motion.div>
 
           {/* Tools & Technologies */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -115,7 +116,7 @@ export default function SkillsSection() {
             <h3 className="text-3xl font-bold mb-8 text-gradient">Tools & Platforms</h3>
             <div className="grid grid-cols-2 gap-4">
               {tools.map((tool, index) => (
-                <motion.div
+                <Motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -124,12 +125,12 @@ export default function SkillsSection() {
                   whileHover={{ scale: 1.05, y: -5 }}
                   className="glass-morphism p-4 rounded-xl text-center hover-lift group"
                 >
-                  <motion.i
+                  <Motion.i
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     className={`${tool.icon} text-4xl mb-3 ${tool.color} group-hover:scale-110 transition-transform`}
                   />
                   <div className="font-semibold">{tool.name}</div>
-                </motion.div>
+                </Motion.div>
               ))}
             </div>
 
@@ -138,7 +139,7 @@ export default function SkillsSection() {
               <h4 className="text-xl font-bold mb-4 text-accent">Recent Certifications</h4>
               <div className="space-y-3">
                 {certifications.map((cert, index) => (
-                  <motion.div
+                  <Motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -152,11 +153,11 @@ export default function SkillsSection() {
                       <div className="text-sm text-gray-400">{cert.issuer}</div>
                     </div>
                     <div className="text-sm text-accent">{cert.date}</div>
-                  </motion.div>
+                  </Motion.div>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </Motion.div>
         </div>
       </div>
     </section>

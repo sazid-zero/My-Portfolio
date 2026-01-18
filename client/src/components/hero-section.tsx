@@ -1,6 +1,8 @@
-import { motion } from 'framer-motion';
+import { useMotionComponents } from '@/hooks/use-motion-components';
 
 export default function HeroSection() {
+  const Motion = useMotionComponents();
+  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -13,7 +15,7 @@ export default function HeroSection() {
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-deep via-slate-800 to-slate-deep">
         {/* Floating geometric shapes */}
-        <motion.div
+        <Motion.div
           animate={{
             y: [0, -20, 0],
             rotate: [0, 5, 0]
@@ -25,7 +27,7 @@ export default function HeroSection() {
           }}
           className="absolute top-20 left-10 w-32 h-32 border border-primary/30 rounded-full"
         />
-        <motion.div
+        <Motion.div
           animate={{
             y: [0, -20, 0],
             rotate: [0, -5, 0]
@@ -38,7 +40,7 @@ export default function HeroSection() {
           }}
           className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-r from-secondary/20 to-accent/20 rounded-lg rotate-45"
         />
-        <motion.div
+        <Motion.div
           animate={{
             y: [0, -30, 0],
             scale: [1, 1.1, 1]
@@ -52,7 +54,7 @@ export default function HeroSection() {
         />
 
         {/* Gradient orbs */}
-        <motion.div
+        <Motion.div
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.5, 0.8, 0.5]
@@ -64,7 +66,7 @@ export default function HeroSection() {
           }}
           className="absolute top-1/4 right-1/3 w-96 h-96 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl"
         />
-        <motion.div
+        <Motion.div
           animate={{
             scale: [1, 1.1, 1],
             opacity: [0.3, 0.6, 0.3]
@@ -81,13 +83,13 @@ export default function HeroSection() {
 
       {/* Hero Content */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
           transition={{ duration: 1 }}
         >
-          <motion.h1
+          <Motion.h1
             className="text-6xl md:text-8xl font-bold mb-6 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -96,9 +98,9 @@ export default function HeroSection() {
           >
             <span className="text-gradient">Sharif</span><br />
             <span className="text-white">Mahmud Sazid</span>
-          </motion.h1>
+          </Motion.h1>
 
-          <motion.div
+          <Motion.div
             className="text-xl md:text-2xl text-gray-300 mb-8 font-mono"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -108,9 +110,9 @@ export default function HeroSection() {
             <span className="text-accent">&lt;</span>
             <span>Full Stack Developer</span>
             <span className="text-accent">/&gt;</span>
-          </motion.div>
+          </Motion.div>
 
-          <motion.p
+          <Motion.p
             className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -119,16 +121,16 @@ export default function HeroSection() {
           >
             Crafting exceptional digital experiences with React.js, TailwindCSS, and modern web technologies.
             Passionate about clean code and innovative solutions.
-          </motion.p>
+          </Motion.p>
 
-          <motion.div
+          <Motion.div
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <motion.button
+            <Motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection('projects')}
@@ -137,34 +139,34 @@ export default function HeroSection() {
               <div className="bg-slate-deep px-8 py-4 rounded-full group-hover:bg-transparent transition-all duration-300">
                 <span className="text-white group-hover:text-white font-semibold">View My Work</span>
               </div>
-            </motion.button>
+            </Motion.button>
 
-            <motion.button
+            <Motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection('contact')}
               className="glass-morphism px-8 py-4 rounded-full hover:bg-white/20 transition-all duration-300"
             >
               Let's Connect
-            </motion.button>
-          </motion.div>
-        </motion.div>
+            </Motion.button>
+          </Motion.div>
+        </Motion.div>
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
+      <Motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <motion.div
+          <Motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
             className="w-1 h-3 bg-white/60 rounded-full mt-2"
           />
         </div>
-      </motion.div>
+      </Motion.div>
     </section>
   );
 }

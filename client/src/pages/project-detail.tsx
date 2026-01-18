@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { useMotionComponents } from '@/hooks/use-motion-components';
 import { getProjectById, Project } from '@/data/projects';
 import Navigation from '@/components/navigation';
 import ReactMarkdown from 'react-markdown';
 
 export default function ProjectDetail() {
+  const Motion = useMotionComponents();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [project, setProject] = useState<Project | null>(null);
@@ -27,7 +28,7 @@ export default function ProjectDetail() {
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
           <p className="text-gray-400 mb-8">The requested project could not be found.</p>
-          <motion.button
+          <Motion.button
             onClick={() => {
               sessionStorage.setItem('portfolio-visited', 'true');
               navigate('/projects');
@@ -38,7 +39,7 @@ export default function ProjectDetail() {
             <div className="bg-slate-deep px-6 py-3 rounded-full group-hover:bg-transparent transition-all duration-300">
               <span className="text-white group-hover:text-white font-semibold">Back to Projects</span>
             </div>
-          </motion.button>
+          </Motion.button>
         </div>
       </div>
     );
@@ -79,7 +80,7 @@ export default function ProjectDetail() {
       <section className="pt-32 pb-16">
         <div className="max-w-4xl mx-auto px-6">
           {/* Back Button */}
-          <motion.button
+          <Motion.button
             onClick={handleBackToProjects}
             whileHover={{ x: -5 }}
             className="inline-flex items-center text-primary hover:text-accent transition-colors mb-8 group"
@@ -89,10 +90,10 @@ export default function ProjectDetail() {
           >
             <i className="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i>
             Back to Projects
-          </motion.button>
+          </Motion.button>
 
           {/* Project Header */}
-          <motion.div 
+          <Motion.div 
             className="mb-12"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -124,7 +125,7 @@ export default function ProjectDetail() {
 
             {/* Action Buttons */}
             <div className="flex gap-4 flex-wrap">
-              <motion.a
+              <Motion.a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -136,9 +137,9 @@ export default function ProjectDetail() {
                   <i className="fas fa-external-link-alt"></i>
                   <span className="text-white group-hover:text-white font-semibold">Live Demo</span>
                 </div>
-              </motion.a>
+              </Motion.a>
 
-              <motion.a
+              <Motion.a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -148,12 +149,12 @@ export default function ProjectDetail() {
               >
                 <i className="fab fa-github"></i>
                 View Code
-              </motion.a>
+              </Motion.a>
             </div>
-          </motion.div>
+          </Motion.div>
 
           {/* Project Image */}
-          <motion.div 
+          <Motion.div 
             className="mb-12 rounded-2xl overflow-hidden"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -164,10 +165,10 @@ export default function ProjectDetail() {
               alt={project.title}
               className="w-full h-64 md:h-96 object-cover"
             />
-          </motion.div>
+          </Motion.div>
 
           {/* Project Details */}
-          <motion.div
+          <Motion.div
             className="prose prose-invert prose-lg max-w-none"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -197,10 +198,10 @@ export default function ProjectDetail() {
                 {project.fullDescription}
               </ReactMarkdown>
             </div>
-          </motion.div>
+          </Motion.div>
 
           {/* Project Links Section */}
-          <motion.div 
+          <Motion.div 
             className="mt-12 text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -208,7 +209,7 @@ export default function ProjectDetail() {
           >
             <h3 className="text-2xl font-bold mb-6">Project Links</h3>
             <div className="flex gap-6 justify-center flex-wrap">
-              <motion.a
+              <Motion.a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -218,9 +219,9 @@ export default function ProjectDetail() {
                 <i className="fas fa-external-link-alt text-3xl text-primary mb-3 block group-hover:text-accent transition-colors"></i>
                 <div className="font-semibold">Live Demo</div>
                 <div className="text-sm text-gray-400">View the live project</div>
-              </motion.a>
+              </Motion.a>
 
-              <motion.a
+              <Motion.a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -230,9 +231,9 @@ export default function ProjectDetail() {
                 <i className="fab fa-github text-3xl text-primary mb-3 block group-hover:text-accent transition-colors"></i>
                 <div className="font-semibold">Source Code</div>
                 <div className="text-sm text-gray-400">View on GitHub</div>
-              </motion.a>
+              </Motion.a>
             </div>
-          </motion.div>
+          </Motion.div>
         </div>
       </section>
     </div>
