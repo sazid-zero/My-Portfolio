@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useMotionComponents } from '@/hooks/use-motion-components';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function Navigation() {
   const Motion = useMotionComponents();
@@ -43,14 +44,14 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Motion.div
+          
+          <motion.div
             whileHover={{ scale: 1.05 }}
             className="text-2xl font-bold text-gradient cursor-pointer"
             onClick={() => scrollToSection('home')}
           >
             A.S.M<span className="text-accent">.</span>
-          </Motion.div>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -78,7 +79,7 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <Motion.div
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -95,7 +96,7 @@ export default function Navigation() {
                 </button>
               ))}
             </div>
-          </Motion.div>
+          </motion.div>
         )}
       </div>
     </nav>
