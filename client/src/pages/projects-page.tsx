@@ -157,6 +157,7 @@ export default function ProjectsPage() {
                     <motion.h3 
                       className="text-xl font-bold mb-3 group-hover:text-gradient transition-all duration-300"
                       whileHover={{ x: 5 }}
+                      onClick={() => handleViewDetails(project.id)}
                     >
                       {project.title}
                     </motion.h3>

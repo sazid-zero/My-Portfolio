@@ -103,6 +103,7 @@ export default function ProjectsSection() {
                   <motion.h3 
                     className="text-lg sm:text-xl md:text-2xl font-bold mb-3 md:mb-4 group-hover:text-gradient transition-all duration-300 truncate"
                     whileHover={{ x: 5 }}
+                    onClick={() => handleViewDetails(project.id)}
                   >
                     {project.title}
                   </motion.h3>
