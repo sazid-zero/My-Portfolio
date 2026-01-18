@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useMotionComponents } from '@/hooks/use-motion-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function Navigation() {
-  const Motion = useMotionComponents();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -56,7 +54,7 @@ export default function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {['Home', 'About', 'Profile', 'Projects', 'Skills', 'Contact'].map((item) => (
-              <Motion.button
+              <motion.button
                 key={item}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
@@ -64,7 +62,7 @@ export default function Navigation() {
                 className="hover:text-primary transition-colors"
               >
                 {item}
-              </Motion.button>
+              </motion.button>
             ))}
           </div>
 
