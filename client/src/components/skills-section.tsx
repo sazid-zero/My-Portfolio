@@ -1,4 +1,5 @@
 import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
+import { useMotionTransition } from '@/hooks/use-motion-components';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 
 export default function SkillsSection() {

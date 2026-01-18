@@ -46,8 +46,11 @@ export function useMotionViewport() {
   const isMobile = useIsMobile();
   
   if (isMobile) {
-    return undefined;
+    return { once: true };
   }
   
-  return { amount: 0.3 };
+  return { amount: 0.3, once: false };
 }
+
+
+
