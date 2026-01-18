@@ -218,12 +218,11 @@ export default function ProfileSection() {
                 
                 <Motion.a
                   href={resumePdf}
-                  download="Resume.pdf"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="glass-morphism px-6 py-3 rounded-full hover:bg-white/20 transition-all duration-300 text-center flex-1"
                 >
-                  Download Resume
+                  View Resume
                 </Motion.a>
               </Motion.div>
             </Motion.div>
