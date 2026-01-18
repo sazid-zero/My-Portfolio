@@ -1,11 +1,12 @@
 
-import { useMotionComponents } from '@/hooks/use-motion-components';
+import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 import { getFeaturedProjects } from '@/data/projects';
 import { useNavigate } from 'react-router-dom';
 
 export default function ProjectsSection() {
   const Motion = useMotionComponents();
+  const viewport = useMotionViewport();
   const scrollRevealRef = useScrollReveal();
   const navigate = useNavigate();
   const projects = getFeaturedProjects();
@@ -46,7 +47,7 @@ export default function ProjectsSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ amount:0.3 }}
+            viewport={viewport}
           >
             Featured <span className="text-gradient">Projects</span>
           </Motion.h2>
@@ -55,7 +56,7 @@ export default function ProjectsSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-             viewport={{ amount:0.3 }}
+             viewport={viewport}
           >
             A showcase of my best work, from concept to deployment
           </Motion.p>
@@ -68,7 +69,7 @@ export default function ProjectsSection() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              viewport={{ amount:0.3 }}
+              viewport={viewport}
               className="group scroll-reveal"
             >
               <div className="glass-morphism rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden hover-lift h-full flex flex-col">
@@ -154,7 +155,7 @@ export default function ProjectsSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ amount:0.3 }}
+          viewport={viewport}
         >
           <Motion.button
             whileHover={{ scale: 1.05 }}

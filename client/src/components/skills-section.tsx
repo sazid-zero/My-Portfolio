@@ -1,8 +1,9 @@
-import { useMotionComponents } from '@/hooks/use-motion-components';
+import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 
 export default function SkillsSection() {
   const Motion = useMotionComponents();
+  const viewport = useMotionViewport();
   const scrollRevealRef = useScrollReveal();
 
   const technicalSkills = [
@@ -49,7 +50,7 @@ export default function SkillsSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-             viewport={{ amount:0.3 }}
+             viewport={viewport}
           >
             My <span className="text-gradient">Skills</span>
           </Motion.h2>
@@ -58,7 +59,7 @@ export default function SkillsSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-             viewport={{ amount:0.3 }}
+             viewport={viewport}
           >
             Technologies and tools I use to bring ideas to life
           </Motion.p>
@@ -70,7 +71,7 @@ export default function SkillsSection() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-             viewport={{ amount:0.3 }}
+             viewport={viewport}
             className="scroll-reveal"
           >
             <h3 className="text-3xl font-bold mb-8 text-gradient">Technical Expertise</h3>
@@ -81,7 +82,7 @@ export default function SkillsSection() {
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                   viewport={{ amount:0.3 }}
+                   viewport={viewport}
                   className="glass-morphism p-6 rounded-xl hover-lift"
                 >
                   <div className="flex justify-between items-center mb-3">
@@ -96,7 +97,7 @@ export default function SkillsSection() {
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
                       transition={{ duration: 1, delay: index * 0.1 + 0.5 }}
-                       viewport={{ amount:0.3 }}
+                       viewport={viewport}
                       className={`bg-gradient-to-r ${skill.color} h-2 rounded-full`}
                     />
                   </div>
@@ -110,7 +111,7 @@ export default function SkillsSection() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ amount:0.3 }}
+            viewport={viewport}
             className="scroll-reveal"
           >
             <h3 className="text-3xl font-bold mb-8 text-gradient">Tools & Platforms</h3>
@@ -121,7 +122,7 @@ export default function SkillsSection() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                   viewport={{ amount:0.3 }}
+                   viewport={viewport}
                   whileHover={{ scale: 1.05, y: -5 }}
                   className="glass-morphism p-4 rounded-xl text-center hover-lift group"
                 >
@@ -144,7 +145,7 @@ export default function SkillsSection() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ amount:0.3 }}
+                    viewport={viewport}
                     whileHover={{ x: 5 }}
                     className="glass-morphism p-4 rounded-lg flex items-center justify-between hover-lift"
                   >

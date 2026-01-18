@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useMotionComponents } from '@/hooks/use-motion-components';
+import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
 import Navigation from '@/components/navigation';
 import Preloader from '@/components/preloader';
 import HeroSection from '@/components/hero-section';
@@ -12,6 +12,7 @@ import ContactSection from '@/components/contact-section';
 
 export default function Portfolio() {
     const Motion = useMotionComponents();
+  const viewport = useMotionViewport();
     const [isLoading, setIsLoading] = useState(() => {
         // Show preloader only on the very first visit in this session
         const hasShownPreloader = sessionStorage.getItem('preloader-shown');

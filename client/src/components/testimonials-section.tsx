@@ -1,9 +1,10 @@
-import { useMotionComponents } from '@/hooks/use-motion-components';
+import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 import { testimonialAvatars } from '@/assets/testimonials/images';
 
 export default function TestimonialsSection() {
   const Motion = useMotionComponents();
+  const viewport = useMotionViewport();
   const scrollRevealRef = useScrollReveal();
 
   const testimonials = [
@@ -48,7 +49,7 @@ export default function TestimonialsSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ amount:0.3 }}
+            viewport={viewport}
           >
             What People <span className="text-gradient">Say</span>
           </Motion.h2>
@@ -57,7 +58,7 @@ export default function TestimonialsSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-             viewport={{ amount:0.3 }}
+             viewport={viewport}
           >
             Feedback from colleagues, mentors, and project collaborators
           </Motion.p>
@@ -70,7 +71,7 @@ export default function TestimonialsSection() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-               viewport={{ amount:0.3 }}
+               viewport={viewport}
               whileHover={{ y: -10, scale: 1.02 }}
               className="glass-morphism p-8 rounded-2xl hover-lift scroll-reveal"
             >
@@ -82,7 +83,7 @@ export default function TestimonialsSection() {
                       initial={{ opacity: 0, scale: 0 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3, delay: index * 0.2 + starIndex * 0.1 }}
-                       viewport={{ amount:0.3 }}
+                       viewport={viewport}
                       className="fas fa-star"
                     />
                   ))}
@@ -93,7 +94,7 @@ export default function TestimonialsSection() {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: index * 0.2 + 0.3 }}
-                 viewport={{ amount:0.3 }}
+                 viewport={viewport}
               >
                 "{testimonial.content}"
               </Motion.p>
@@ -102,7 +103,7 @@ export default function TestimonialsSection() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 + 0.5 }}
-                 viewport={{ amount:0.3 }}
+                 viewport={viewport}
               >
                 <Motion.img
                   whileHover={{ scale: 1.1 }}

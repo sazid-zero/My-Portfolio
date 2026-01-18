@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useMotionComponents } from '@/hooks/use-motion-components';
+import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Navigation() {
   const Motion = useMotionComponents();
+  const viewport = useMotionViewport();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();

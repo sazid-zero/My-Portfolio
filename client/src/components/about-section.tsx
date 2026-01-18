@@ -1,8 +1,9 @@
-import { useMotionComponents } from '@/hooks/use-motion-components';
+import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 
 export default function AboutSection() {
   const Motion = useMotionComponents();
+  const viewport = useMotionViewport();
   const scrollRevealRef = useScrollReveal();
 
   const stats = [
@@ -40,7 +41,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ amount:0.3 }}
+            viewport={viewport}
           >
             <span className="text-gradient">About</span> Me
           </Motion.h2>
@@ -49,7 +50,7 @@ export default function AboutSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ amount:0.3 }}
+            viewport={viewport}
           >
             A passionate Computer Science student with a love for creating beautiful, functional web applications
           </Motion.p>
@@ -61,7 +62,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ amount:0.3 }}
+            viewport={viewport}
             className="scroll-reveal"
           >
             <div className="glass-morphism p-8 rounded-2xl hover-lift">
@@ -106,7 +107,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ amount:0.3 }}
+            viewport={viewport}
             className="scroll-reveal"
           >
             <div className="grid grid-cols-2 gap-6">

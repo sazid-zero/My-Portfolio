@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useMotionComponents } from '@/hooks/use-motion-components';
+import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
 import { useNavigate } from 'react-router-dom';
 import { getAllProjects, getProjectsByCategory } from '@/data/projects';
 import Navigation from '@/components/navigation';
 
 export default function ProjectsPage() {
   const Motion = useMotionComponents();
+  const viewport = useMotionViewport();
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [displayedProjects, setDisplayedProjects] = useState(getAllProjects());

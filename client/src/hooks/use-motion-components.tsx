@@ -2,15 +2,10 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { motion } from 'framer-motion';
 import React from 'react';
 
-/**
- * Hook that returns either motion components (for desktop) or regular HTML elements (for mobile)
- * This optimization removes animation overhead on mobile devices for better performance
- */
 export function useMotionComponents() {
   const isMobile = useIsMobile();
 
   if (isMobile) {
-    // Return regular HTML elements for mobile (no animations)
     return {
       div: motion.div,
       span: 'span',
@@ -29,7 +24,6 @@ export function useMotionComponents() {
     };
   }
 
-  // Return motion components for desktop
   return {
     div: motion.div,
     span: motion.span,
@@ -46,4 +40,14 @@ export function useMotionComponents() {
     h6: motion.h6,
     p: motion.p,
   };
+}
+
+export function useMotionViewport() {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) {
+    return undefined;
+  }
+  
+  return { amount: 0.3 };
 }

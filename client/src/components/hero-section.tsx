@@ -1,7 +1,8 @@
-import { useMotionComponents } from '@/hooks/use-motion-components';
+import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
 
 export default function HeroSection() {
   const Motion = useMotionComponents();
+  const viewport = useMotionViewport();
   
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
