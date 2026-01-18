@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useMotionComponents } from '@/hooks/use-motion-components';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 export default function Navigation() {
+  const Motion = useMotionComponents();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -35,26 +36,28 @@ export default function Navigation() {
   };
 
   return (
-    <nav
+    <Motion.nav
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'glass-morphism shadow-lg' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          
-          <motion.div
+          {/* Logo */}
+          <Motion.div
             whileHover={{ scale: 1.05 }}
             className="text-2xl font-bold text-gradient cursor-pointer"
             onClick={() => scrollToSection('home')}
           >
             A.S.M<span className="text-accent">.</span>
-          </motion.div>
+          </Motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {['Home', 'About', 'Profile', 'Projects', 'Skills', 'Contact'].map((item) => (
-              <motion.button
+              <Motion.button
                 key={item}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
@@ -62,7 +65,7 @@ export default function Navigation() {
                 className="hover:text-primary transition-colors"
               >
                 {item}
-              </motion.button>
+              </Motion.button>
             ))}
           </div>
 
@@ -77,7 +80,7 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -94,9 +97,9 @@ export default function Navigation() {
                 </button>
               ))}
             </div>
-          </motion.div>
+          </Motion.div>
         )}
       </div>
-    </nav>
+    </Motion.nav>
   );
 }
