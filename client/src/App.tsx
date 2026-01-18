@@ -40,13 +40,14 @@ function App() {
     
         const lenisConfig = isMobile
             ? {
-                  lerp: 0.1, 
-                  friction: 0.12, 
+                  lerp: 0.05, 
+                  friction: 0.1, 
                   duration: 1.2, 
                   easing: (t: number) => t,
+                  smoothWheel: false,
+                  smoothTouch: true
               }
             : {};
-        if (isMobile) return;
 
         const lenis = new Lenis(lenisConfig);
 
