@@ -1,6 +1,6 @@
 
 import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
-import { useMotionTransition } from '@/hooks/use-motion-components';
+ 
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 import { getFeaturedProjects } from '@/data/projects';
 import { useNavigate } from 'react-router-dom';

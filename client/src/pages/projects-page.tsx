@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
-import { useMotionTransition } from '@/hooks/use-motion-components';
+ 
 import { useNavigate } from 'react-router-dom';
 import { getAllProjects, getProjectsByCategory } from '@/data/projects';
 import Navigation from '@/components/navigation';

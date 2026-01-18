@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
-import { useMotionTransition } from '@/hooks/use-motion-components';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 import { useToast } from '@/hooks/use-toast';
+import resumePdf from '@/assets/Resume.pdf';
 
 interface ContactFormData {
   name: string;
@@ -82,9 +82,9 @@ export default function ContactSection() {
   ];
 
   const quickLinks = [
-    { icon: 'fas fa-file-pdf', label: 'Resume', href: '#' },
-    { icon: 'fab fa-linkedin', label: 'LinkedIn', href: 'https://linkedin.com' },
-    { icon: 'fab fa-github', label: 'GitHub', href: 'https://github.com' },
+    { icon: 'fas fa-file-pdf', label: 'Resume', href: resumePdf },
+    { icon: 'fab fa-linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/sharif-mahmud-sazid/' },
+    { icon: 'fab fa-github', label: 'GitHub', href: 'https://github.com/sazid-zero' },
     { icon: 'fas fa-briefcase', label: 'Portfolio', href: '#' }
   ];
 

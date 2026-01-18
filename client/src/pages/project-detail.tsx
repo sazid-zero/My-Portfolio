@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
-import { useMotionTransition } from '@/hooks/use-motion-components';
+ 
 import { getProjectById, Project } from '@/data/projects';
 import Navigation from '@/components/navigation';
 import ReactMarkdown from 'react-markdown';

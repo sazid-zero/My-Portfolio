@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
-import { useMotionTransition } from '@/hooks/use-motion-components';
+ 
 import Navigation from '@/components/navigation';
 import Preloader from '@/components/preloader';
 import HeroSection from '@/components/hero-section';
