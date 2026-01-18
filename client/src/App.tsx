@@ -40,8 +40,7 @@ function App() {
     
         const lenisConfig = isMobile
             ? {
-                  lerp: 0.05, 
-                  friction: 0.1, 
+                  lerp: 0.05,  
                   duration: 1.2, 
                   easing: (t: number) => t,
                   smoothWheel: false,
