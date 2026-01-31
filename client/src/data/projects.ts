@@ -4,6 +4,9 @@ import easybank from '@/assets/easybank.png';
 import shopnest from '@/assets/shopnest.png';
 import weatherglass from '@/assets/weatherglass.png';
 import homesync from '@/assets/homesync.jpeg';
+import cripterdex from '@/assets/cripterdex.png';
+import consultbook from '@/assets/consultbook.png';
+import sustresearchhub from '@/assets/sustresearchhub.jpeg';
 
 export interface Project {
   id: string;
@@ -19,6 +22,218 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+  id: 'sust-research-hub',
+  title: 'SUST Research Hub - Academic Research Ecosystem',
+  description: 'A comprehensive digital platform for managing the entire lifecycle of academic research. It integrates repositories for theses, student projects, and published papers, while providing dedicated access to research datasets and machine learning models.',
+  fullDescription: `# SUST Research Hub - Academic Research Ecosystem
+
+**A production-grade digital ecosystem for managing, discovering, and publishing academic research. Built with modern web technologies for the Shahjalal University of Science and Technology.**
+
+## Platform Overview
+
+SUST Research Hub is a unified digital platform that goes beyond a simple thesis repository. It serves as a central hub for the entire academic research lifecycle, aggregating **Theses**, **Student Projects**, **Published Papers**, **Datasets**, and **Machine Learning Models**. This ecosystem enables seamless collaboration between researchers, supervisors, and the global academic community.
+
+### Key Achievements
+
+- **2000+ Theses & Projects** catalogued with complete metadata
+- **500+ Publications** with cross-indexed authors
+- **Dedicated Reservoirs** for Datasets and ML Models
+- **150+ Active Users** across student, supervisor, and admin roles
+- **99.9% Uptime** with redundant infrastructure
+- **<500ms** average page load time
+- **WCAG 2.1 AA** accessibility compliance
+
+## Core Features
+
+### 1. Comprehensive Research Repository
+- **Multi-Type Archiving**: Dedicated repositories for Theses, Project Reports, and Published Research Papers.
+- **Research Artifacts**: Specialized storage and discovery for Datasets and Model checkpoints (weights/code).
+- **Unified Discovery**: Cross-references between papers, the projects they spawned from, and the datasets they used.
+
+### 2. User Management & Authentication
+- **Registration & Approval Workflow**: Multi-role registration (Student, Supervisor, Admin) with admin approval queue.
+- **User Roles & Permissions**: Distinct capabilities for students, supervisors, and admins.
+
+### 3. Submission & Workflow System
+- **Advanced Submission Pipelines**: Tailored workflows for submitting theses, uploading project code, or archiving datasets.
+- **Review & Approval**: Structured feedback loops, revision requests, and version control for all submission types.
+
+### 3. Publication & Research Papers System
+
+- **Academic Publications Management**: Link theses to published papers, track venues and citations.
+- **Discovery**: Full-text search and related papers discovery.
+
+### 4. Discovery & Search System
+
+- **Intelligent Search Engine**: Full-text search with facets, auto-complete, and relevance ranking.
+- **Browse & Filter**: Browse by discipline, year, department, and more.
+
+### 5. Team Collaboration Features
+- **Team Formation**: Create research teams and invite collaborators for group projects.
+- **Asset Management**: Secure high-capacity upload for large datasets and model files via Cloudinary integration.
+
+## Technology Stack
+
+### Frontend
+- **React 19.2**
+- **Next.js 16**
+- **TypeScript 5.0**
+- **Tailwind CSS v4**
+- **shadcn/ui**
+- **React Query**
+
+### Backend
+- **Next.js Server Actions**
+- **PostgreSQL (Neon/Supabase)**
+- **Prisma ORM**
+
+### Infrastructure
+- **Cloudinary** (Storage)
+- **Vercel Blob**
+- **CloudFlare CDN**
+
+## System Architecture
+
+The platform follows a modern tiered architecture:
+- **Presentation Layer**: React 19 Components + Next.js UI
+- **Application Layer**: Server Components & Actions
+- **Business Logic Layer**: Asset Management, Reviews, etc.
+- **Data Access Layer**: Prisma ORM, Caching
+- **Persistence Layer**: PostgreSQL, Cloudinary
+
+## Security & Compliance
+
+- **Authentication**: Bcrypt hashing, JWT tokens
+- **Data Protection**: TLS 1.3, AES-256 encryption
+- **Compliance**: GDPR, CCPA, Academic Standards (IEEE, ACM)
+`,
+  image: sustresearchhub,
+  technologies: ['Next.js 16', 'React 19', 'TypeScript', 'Prisma', 'PostgreSQL', 'TailwindCSS', 'Cloudinary'],
+  githubUrl: 'https://github.com/sust/research-hub',
+  liveUrl: 'https://sust-research-hub.vercel.app/',
+  category: 'Web App',
+  featured: true
+},
+  {
+  id: 'consultbook',
+  title: 'ConsultBook - Expert Consultation Platform',
+  description: 'A comprehensive Knowledge Commerce Marketplace bridging experts and knowledge seekers. Features 1:1 video consultations, live masterclasses, and digital product monetization.',
+  fullDescription: `# ConsultBook - The Ultimate Expert Consultation Platform
+
+**ConsultBook** is a next-generation SaaS platform designed to bridge the gap between experts and knowledge seekers. It serves as a comprehensive **Knowledge Commerce Marketplace**, allowing professionals to monetize their expertise through 1:1 consultations, live masterclasses, and digital products.
+
+Built with **Next.js 15**, **TypeScript**, and **Drizzle ORM**, ConsultBook offers a seamless, high-performance experience with real-time capabilities. It solves the fragmentation in the consultation industry by unifying scheduling, video conferencing, payments, and community management into a single, elegant ecosystem.
+
+## Key Features
+
+### 1. **Expert Marketplace & Discovery**
+- **Advanced Search Engine**: Real-time filtering by specialty, location, price, and mode (video/in-person) using a custom optimized search algorithm.
+- **Dynamic Profile Pages**: Rich consultant profiles showcasing bios, qualifications, cover photos, and verified reviews.
+- **Global Command Center**: A \`Cmd+K\` power search interface for instant navigation across the entire platform.
+
+### 2. **Comprehensive Booking System**
+- **Smart Scheduling**: Integrated calendar management with timezone support, allowing consultants to define custom availability slots.
+- **Multi-Mode Appointments**: Support for Video, Audio, and In-Person consultation bookings.
+- **Workflow Automation**: Automated email notifications and status updates (Pending -> Confirmed -> Completed) for both parties.
+
+### 3. **Live Workshops & Masterclasses**
+- **Event Management**: Consultants can create, publish, and monetize live group sessions.
+- **Ticketing System**: Seamless seat reservation and capacity management for workshops.
+- **Digital Asset Delivery**: Automated distribution of workshop materials and resources to attendees.
+
+### 4. **Real-Time Communication Hub**
+- **Integrated Messaging**: A full-featured chat system allowing pre-booking inquiries and post-session follow-ups.
+- **File Sharing**: Secure sharing of documents, resources, and session notes directly within the chat.
+- **Instant Notifications**: Real-time alerts for new messages, booking requests, and session reminders.
+
+### 5. **Robust Payment Infrastructure** (Powered by Stripe)
+- **Secure Transactions**: End-to-end encrypted payment processing for appointments and digital products.
+- **Wallet System**: Integrated digital wallet for tracking earnings, refunds, and transaction history.
+- **Automated Payouts**: Streamlined withdrawal process for consultants to receive their earnings directly.
+- **Multi-Currency Support**: Built to handle international transactions seamlessley.
+
+### 6. **Dual-Role Dashboards**
+- **Client Dashboard**: A personalized hub for tracking upcoming sessions, purchase history, and favorite consultants.
+- **Consultant Workspace**: A professional suite for managing bookings, analyzing earnings, creating workshops, and editing public profiles.
+
+## Technology Stack
+
+This project leverages the bleeding edge of the React ecosystem to ensure scalability and performance.
+
+- **Core Framework**: Next.js 15 (App Router), React 19 (RC)
+- **Language**: TypeScript (Strict Mode)
+- **Styling**: Tailwind CSS, Shadcn UI, Framer Motion (Animations)
+- **Database & ORM**: PostgreSQL (Neon DB Serverless), Drizzle ORM
+- **Authentication**: Firebase Auth (Custom Integration)
+- **State Management**: React Hooks, Context API, Server Actions
+- **Real-Time**: Server-Sent Events (SSE) / Polling for Updates
+- **Forms & Validation**: React Hook Form, Zod
+
+## Technical Challenges Solved
+
+### **1. Handling Complex Scheduling Logic**
+Designing a database schema and UI that handles custom availability across different timezones was non-trivial. I implemented a robust \`consultant_schedules\` table and overlapping time-slot validation logic to ensure zero double-bookings.
+
+### **2. Performance Optimization with Server Actions**
+To ensure lightning-fast page loads, I heavily utilized Next.js Server Components and Server Actions. This reduced the client-side bundle size significantly and moved complex logic (like booking calculations and database mutations) to the edge.
+
+### **3. Unified Search Experience**
+Implementing the "Global Search" required harmonizing data from multiple disparate sources (Consultants, Workshops, Products). I built a unified search indexer that aggregates these entities and serves them through a high-performance filtering UI.
+`,
+  image: consultbook,
+  technologies: ['Next.js 15', 'TypeScript', 'TailwindCSS', 'Drizzle ORM', 'Stripe', 'Shadcn UI', 'Framer Motion', 'Firebase'],
+  githubUrl: 'https://github.com/sazid-zero/ConsultBook',
+  liveUrl: 'https://consultbook.vercel.app/',
+  category: 'SaaS',
+  featured: true
+},
+  {
+  id: 'cripterdex',
+  title: 'CripterDex - Crypto Dashboard & Market Intel',
+  description: 'A professional-grade cryptocurrency dashboard and market intelligence platform designed for traders. Offers real-time data tracking, news aggregation, and portfolio management in a sleek interface.',
+  fullDescription: `# CripterDex - Crypto Dashboard & Market Intel
+
+**CripterDex** is a professional-grade cryptocurrency dashboard and market intelligence platform designed for traders, investors, and enthusiasts. Built with modern web technologies, it offers real-time data tracking, news aggregation, and portfolio management in a sleek, responsive interface.
+
+## Features
+
+- **Real-Time Market Data**: Live tracking of thousands of cryptocurrencies with 60-second auto-updates.
+- **Advanced Charting**: Interactive price history charts (1D, 7D, 30D, 1Y).
+- **Global News Aggregator**: Curated crypto news feed to stay ahead of market trends.
+- **Watchlist Management**: Personalized portfolio tracking and favorites list.
+- **Deep Market Analysis**:
+  - Top Gainers & Losers
+  - Trending Coins
+  - Volume & Market Cap metrics
+- **Responsive Design**: Seamless experience across Desktop, Tablet, and Mobile devices.
+- **Progressive Web App (PWA)**: Installable application support.
+
+## Integrations & APIs
+
+- **CoinGecko API**: Powering the real-time market data.
+- **CryptoCompare API**: Delivers the global news feed.
+- **Lenis**: Buttery smooth scrolling interactions.
+- **Lucide Icons**: Beautiful, consistent vector icons.
+- **Vercel Analytics**: Privacy-friendly real-time traffic insights.
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **UI Components**: shadcn/ui (Radix UI)
+- **Charts**: Recharts
+- **State Management**: Zustand
+`,
+  image: cripterdex,
+  technologies: ['Next.js', 'TypeScript', 'TailwindCSS', 'Framer Motion', 'shadcn/ui', 'Recharts', 'Zustand'],
+  githubUrl: 'https://github.com/sazid-zero/CripterDex',
+  liveUrl: 'https://cripterdex.vercel.app/',
+  category: 'Dashboard',
+  featured: true
+},
   {
   id: 'axion-ai',
   title: 'Axion.AI - Modern SaaS Landing Page',
@@ -46,28 +261,6 @@ A high-performance, frontend-only landing page built for an AI-focused SaaS plat
 - **Build Tool**: Vite
 - **Deployment**: Vercel
 
-## Live Demo
-
-Check out the live version here:  
-→ https://axion-ai-an-saa-s-landing-page-kd2m.vercel.app/
-
-## Installation & Setup
-
-\`\`\`bash
-# Clone the repository
-git clone https://github.com/sazid-zero/Axion.AI-An_SaaS_Landing_Page.git
-
-# Navigate into the project
-cd Axion.AI-An_SaaS_Landing_Page
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-\`\`\`
-
-The app runs at http://localhost:5173
 
 ## Project Highlights
 
@@ -112,29 +305,6 @@ An interactive, frontend-only smart home dashboard that gives users a beautiful,
 - **Build Tool**: Vite
 
 **Note**: Currently frontend-only (mock data). Future plans include backend integration (e.g., Firebase) for real-time sync, authentication, and notifications.
-
-## Live Demo
-
-Experience the dashboard live:  
-→ https://home-sync-smart-home-dashboard.vercel.app/
-
-## Installation & Setup
-
-\`\`\`bash
-# Clone the repository
-git clone https://github.com/sazid-zero/HomeSync-Smart-Home-Dashboard.git
-
-# Navigate to the project
-cd HomeSync-Smart-Home-Dashboard
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm run dev
-\`\`\`
-
-Open http://localhost:5173 in your browser.
 
 ## How to Use
 
@@ -184,34 +354,6 @@ A sleek, high-performance landing page for a premium coffee shop experience. Pac
 - **Smooth Scroll**: Lenis
 - **Icons**: Lucide React, React Icons
 
-## Live Demo
-
-Experience Coffinity live:  
-→ https://coffinity.vercel.app/
-
-## Installation & Setup
-
-\`\`\`bash
-# Clone the repository
-git clone https://github.com/sazid-zero/coffinity.git
-
-# Navigate into the project
-cd coffinity
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-\`\`\`
-
-Open http://localhost:5173 (or the port shown) in your browser.
-
-For production build:
-\`\`\`bash
-npm run build
-\`\`\`
-
 ## Project Highlights
 
 - Focus on performance and visual polish — ideal as a template for food/beverage or e-commerce landing pages
@@ -256,34 +398,6 @@ A high-performance, fully frontend e-commerce application that delivers a realis
 - **Deployment**: Vercel
 
 **Note**: Pure frontend project — ideal as a starter template, demo, or showcase for advanced React e-commerce UIs.
-
-## Live Demo
-
-Shop live right now:  
-→ https://shopnest.vercel.app/
-
-## Installation & Setup
-
-\`\`\`bash
-# Clone the repository
-git clone https://github.com/sazid-zero/ShopNest-E-Commerce-Web-App.git
-
-# Navigate into the project
-cd ShopNest-E-Commerce-Web-App
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-\`\`\`
-
-Open http://localhost:5173 (or the port shown).
-
-For production build:
-\`\`\`bash
-npm run build
-\`\`\`
 
 ## Project Highlights
 
@@ -330,34 +444,6 @@ A high-performance, frontend-only landing page for a digital banking platform. D
 - **Icons**: Lucide React
 - **Forms & Utilities**: React Hook Form, date-fns, Embla Carousel, clsx, class-variance-authority
 
-## Live Demo
-
-Experience EasyBank live:  
-→ https://easy-bank-react-landing-page.vercel.app/
-
-## Installation & Setup
-
-\`\`\`bash
-# Clone the repository
-git clone https://github.com/sazid-zero/EasyBank-react-landing-page.git
-
-# Navigate into the project
-cd EasyBank-react-landing-page
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-\`\`\`
-
-Open http://localhost:5173 (or the port shown) in your browser.
-
-For production build:
-\`\`\`bash
-npm run build
-\`\`\`
-
 ## Project Highlights
 
 - Professional fintech aesthetic with focus on trust-building elements (security badges, testimonials, CTAs)
@@ -401,41 +487,7 @@ A sophisticated full-stack weather application that delivers accurate, real-time
 - **Internationalization**: Custom i18n system
 - **Deployment**: Vercel (full-stack)
 
-## Live Demo
-
-Check out the live app:  
-→ https://weather-glass-weather-forecast-app.vercel.app/
-
-## Installation & Setup
-
 (Note: Full-stack project with separate client/server folders. Requires OpenWeatherMap API key and PostgreSQL/Neon DB setup.)
-
-\`\`\`bash
-# Clone the repository
-git clone https://github.com/sazid-zero/WeatherGlass-Weather-Forecast-App.git
-
-# Navigate to project root
-cd WeatherGlass-Weather-Forecast-App
-
-# Install frontend dependencies
-cd client
-npm install
-
-# Install backend dependencies (from root or server/)
-cd ../server  # or from root if structured differently
-npm install
-
-# Set up environment variables (.env files)
-# - OPENWEATHER_API_KEY=your_key
-# - DATABASE_URL=your_neon_postgres_url
-
-# Run development servers
-# Frontend (Vite)
-npm run dev  # in client/
-
-# Backend (Express)
-npm run dev  # in server/
-\`\`\`
 
 ## Project Highlights
 
@@ -451,7 +503,7 @@ Designed & Developed by **Sharif Mahmud Sazid**`,
   githubUrl: 'https://github.com/sazid-zero/WeatherGlass-Weather-Forecast-App',
   liveUrl: 'https://weather-glass-weather-forecast-app.vercel.app/',
   category: 'Dashboard',
-  featured: true
+  featured: false
 },
 
 ];
