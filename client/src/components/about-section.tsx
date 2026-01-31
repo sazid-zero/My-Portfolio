@@ -10,7 +10,7 @@ export default function AboutSection() {
     { count: '10+', label: 'Projects' },
     { count: '1', label: 'Years Experience' },
     { count: '15+', label: 'Technologies' },
-    { count: '600+', label: 'Git Commits' }
+    { count: '1000+', label: 'Git Commits' }
   ];
 
   const socialLinks = [
