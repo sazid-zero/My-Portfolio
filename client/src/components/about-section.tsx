@@ -69,7 +69,7 @@ export default function AboutSection() {
               <h3 className="text-3xl font-bold mb-6 text-gradient">Hello World!</h3>
               <div className="space-y-6 text-gray-300 leading-relaxed">
                 <p>
-                  I'm a Computer Science Engineering student with a passion for frontend development
+                  I'm a Computer Science Engineering student with a passion for frontend and full-stack development
                   and modern web technologies. My journey began with curiosity about how websites work,
                   and has evolved into a deep appreciation for clean code and exceptional user experiences.
                 </p>
