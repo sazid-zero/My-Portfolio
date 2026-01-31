@@ -7,10 +7,10 @@ export default function AboutSection() {
   const scrollRevealRef = useScrollReveal();
 
   const stats = [
-    { count: '25+', label: 'Projects' },
-    { count: '2', label: 'Years Experience' },
+    { count: '10+', label: 'Projects' },
+    { count: '1', label: 'Years Experience' },
     { count: '15+', label: 'Technologies' },
-    { count: '1000+', label: 'Git Commits' }
+    { count: '600+', label: 'Git Commits' }
   ];
 
   const socialLinks = [
