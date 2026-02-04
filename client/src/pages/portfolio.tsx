@@ -87,7 +87,6 @@ export default function Portfolio() {
                 <ProfileSection />
                 <ProjectsSection />
                 <SkillsSection />
-                <TestimonialsSection />
                 <ContactSection />
 
                 {/* Footer */}
