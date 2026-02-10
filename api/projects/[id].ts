@@ -1,7 +1,8 @@
+// api/projects/[id].ts
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { db } from '../server/db';
-import { projects, insertProjectSchema } from '../shared/schema';
-import { eq, desc } from 'drizzle-orm';
+import { db } from '../../server/db';
+import { projects, insertProjectSchema } from '../../shared/schema';
+import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -19,52 +20,38 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  // GET /api/projects - List all projects
+  const { id } = req.query;
+  if (!id || Array.isArray(id)) {
+    return res.status(400).json({ error: "Missing or invalid ID" });
+  }
+  const projectId = parseInt(id as string);
+
+  // GET /api/projects/:id - Get project by ID
   if (req.method === 'GET') {
     try {
-      const allProjects = await db.select().from(projects).orderBy(desc(projects.createdAt));
-      return res.status(200).json(allProjects);
-    } catch (error) {
-      console.error("Error fetching projects:", error);
-      return res.status(500).json({ error: "Failed to fetch projects" });
-    }
-  }
-
-  // POST /api/projects - Create new project
-  if (req.method === 'POST') {
-    const authHeader = req.headers.authorization;
-    if (authHeader !== `Bearer ${process.env.VITE_ADMIN_PASSWORD}`) {
-      return res.status(401).json({ error: "Unauthorized" });
-    }
-
-    try {
-      const validatedData = insertProjectSchema.parse(req.body);
-      const newProject = await db.insert(projects).values(validatedData).returning();
-      return res.status(200).json(newProject[0]);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ error: "Invalid data", details: error.errors });
+      const project = await db.select().from(projects).where(eq(projects.id, projectId));
+      if (project.length === 0) {
+        return res.status(404).json({ error: "Project not found" });
       }
-      console.error("Error creating project:", error);
-      return res.status(500).json({ error: "Failed to create project" });
+      return res.status(200).json(project[0]);
+    } catch (error) {
+      console.error("Error fetching project by ID:", error);
+      return res.status(500).json({ error: "Failed to fetch project" });
     }
   }
 
-  // PUT /api/projects?id=X - Update project
+  // PUT /api/projects/:id - Update project
   if (req.method === 'PUT') {
     const authHeader = req.headers.authorization;
     if (authHeader !== `Bearer ${process.env.VITE_ADMIN_PASSWORD}`) {
       return res.status(401).json({ error: "Unauthorized" });
     }
 
-    const { id } = req.query;
-    if (!id || Array.isArray(id)) return res.status(400).json({ error: "Missing or invalid ID" });
-
     try {
       const validatedData = insertProjectSchema.partial().parse(req.body);
       const updatedProject = await db.update(projects)
         .set(validatedData)
-        .where(eq(projects.id, parseInt(id as string)))
+        .where(eq(projects.id, projectId))
         .returning();
       
       if (updatedProject.length === 0) return res.status(404).json({ error: "Project not found" });
@@ -78,18 +65,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
   }
 
-  // DELETE /api/projects?id=X - Delete project
+  // DELETE /api/projects/:id - Delete project
   if (req.method === 'DELETE') {
     const authHeader = req.headers.authorization;
     if (authHeader !== `Bearer ${process.env.VITE_ADMIN_PASSWORD}`) {
       return res.status(401).json({ error: "Unauthorized" });
     }
 
-    const { id } = req.query;
-    if (!id || Array.isArray(id)) return res.status(400).json({ error: "Missing or invalid ID" });
-
     try {
-      await db.delete(projects).where(eq(projects.id, parseInt(id as string)));
+      await db.delete(projects).where(eq(projects.id, projectId));
       return res.status(200).json({ message: "Project deleted successfully" });
     } catch (error) {
       console.error("Error deleting project:", error);
