@@ -60,7 +60,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // GET /api/projects - List all projects
   if (req.method === 'GET') {
     try {
-      const allProjects = await db.select().from(projects).orderBy(desc(projects.createdAt));
+      const allProjects = await db.select().from(projects).orderBy(desc(projects.id));
       return res.status(200).json(allProjects);
     } catch (error) {
       console.error("Error fetching projects:", error);
