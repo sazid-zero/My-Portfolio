@@ -1,46 +1,55 @@
 # Sharif Mahmud - Portfolio
 
-A high-performance, modern developer portfolio built with React 18, TypeScript, and TailwindCSS. This project is optimized for speed and can be deployed entirely serverless.
+A high-performance, modern developer portfolio built with React 18, TypeScript, and TailwindCSS. This project features a completely dynamic project management system powered by a serverless backend and Neon Postgres database.
 
 ## 🚀 Live Demo
-https://my-portfolio-v42.vercel.app/
+[https://my-portfolio-v42.vercel.app/](https://my-portfolio-v42.vercel.app/)
 
 ## ✨ Features
-- **Modern Tech Stack**: React 18 with Vite for lightning-fast development.
+- **Dynamic Project System**: Projects are fetched from a Neon Postgres database, not hardcoded.
+- **Admin Dashboard**: A protected `/admin` route to Create, Read, Update, and Delete (CRUD) projects.
+- **Markdown Support**: Write full project case studies in Markdown directly from the dashboard.
+- **Modern Tech Stack**: React 18, Vite, TypeScript, and TailwindCSS.
 - **Dynamic Animations**: Smooth transitions using Framer Motion and GSAP.
-- **Serverless Contact Form**: Integrated with [Web3Forms](https://web3forms.com/) for email delivery without a backend.
+- **Serverless Backend**: API routes hosted as Vercel Serverless Functions.
+- **Contact Form**: Integrated with [Web3Forms](https://web3forms.com/) for serverless email delivery.
+- **Database ORM**: Type-safe database interactions with Drizzle ORM.
 - **Responsive Design**: Mobile-first approach using TailwindCSS.
-- **Project Showcase**: Categorized projects with detailed view pages.
-- **Interactive UI**: Custom preloader, scroll-reveal effects, and glassmorphism.
 
 ## 🛠️ Tech Stack
-- **Frontend**: React 18, TypeScript, Vite
+### Frontend
+- **Framework**: React 18, TypeScript, Vite
 - **Styling**: TailwindCSS, Radix UI (shadcn/ui), Lucide Icons
-- **Animations**: Framer Motion, GSAP
-- **Smooth Scrolling**: Lenis
-- **Routing**: React Router DOM
+- **Animations**: Framer Motion, GSAP, Lenis (Smooth Scroll)
+- **Routing**: React Router DOM (v7)
 - **Data Fetching**: TanStack Query (React Query)
-- **Forms**: Serverless via Web3Forms API
+
+### Backend & Database
+- **Database**: Neon Postgres (Serverless)
+- **ORM**: Drizzle ORM
+- **API**: Vercel Serverless Functions (Node.js)
+- **Authentication**: Simple Admin Password protection
 
 ## 📂 Project Structure
 ```
 ├── client/              # React frontend (Vite)
 │   ├── src/
-│   │   ├── assets/      # Static assets (photos, images)
+│   │   ├── assets/      # Static assets
 │   │   ├── components/  # Reusable UI components
-│   │   ├── data/        # Project data and constants
-│   │   ├── hooks/       # Custom React hooks
-│   │   ├── pages/       # Page components (Portfolio, Projects, Details)
+│   │   ├── pages/       # Admin & Public pages
 │   │   └── App.tsx      # Main application routing
-├── shared/              # Shared types and validation schemas
-└── api/                 # Utility scripts (e.g., contact form helpers)
+├── api/                 # Vercel Serverless Functions
+│   ├── auth/            # Admin login logic
+│   └── projects/        # Project CRUD endpoints
+├── shared/              # Shared types and Drizzle schema
+└── server/              # Local Express server (for dev)
 ```
 
 ## ⚙️ Setup & Installation
 
 ### Prerequisites
 - Node.js (v18 or higher)
-- Web3Forms Access Key ([Get it here](https://web3forms.com/))
+- A [Neon Postgres](https://neon.tech) database project.
 
 ### Installation
 1. Clone the repository:
@@ -52,13 +61,26 @@ https://my-portfolio-v42.vercel.app/
    npm install
    ```
 3. Set up environment variables:
-   Create a `.env` file in the root or add to your secrets:
+   Create a `.env` file in the root directory:
    ```env
-   VITE_WEB3FORMS_ACCESS_KEY=your_access_key_here
+   # Database Connection (Pooler URL recommended for Serverless)
+   DATABASE_URL=postgres://user:pass@ep-project.region.neon.tech/neondb?sslmode=require
+
+   # Admin Authentication
+   VITE_ADMIN_PASSWORD=your_secure_password
+
+   # Contact Form (Web3Forms)
+   VITE_WEB3FORMS_ACCESS_KEY=your_access_key
+   ```
+
+4. Push Database Schema:
+   Initialize your database tables using Drizzle Kit:
+   ```bash
+   npm run db:push
    ```
 
 ### Development
-Start the development server:
+Start the development server (runs with local Express backend):
 ```bash
 npm run dev
 ```
@@ -70,11 +92,15 @@ npm run build
 ```
 
 ## 🌐 Deployment
-This project is designed for serverless platforms like **Vercel** or **Netlify**.
+This project is optimized for **Vercel**.
 
-1. Connect your GitHub repository to Vercel.
-2. Add `VITE_WEB3FORMS_ACCESS_KEY` to the environment variables in the Vercel dashboard.
-3. Deploy!
+1. **Push to GitHub**: Commit your changes.
+2. **Import to Vercel**: Import your repository.
+3. **Environment Variables**: Add the following in Vercel Project Settings:
+   - `DATABASE_URL` (Use the **Pooled** connection string from Neon)
+   - `VITE_ADMIN_PASSWORD`
+   - `VITE_WEB3FORMS_ACCESS_KEY`
+4. **Deploy**: Vercel will automatically build the frontend and serverless functions.
 
 ## 📄 License
 This project is licensed under the MIT License.
