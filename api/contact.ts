@@ -1,11 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-
-interface ContactFormData {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
+import { db } from '../server/db';
+import { contactMessages } from '../shared/schema';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Enable CORS
@@ -27,7 +22,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const { name, email, subject, message }: ContactFormData = req.body;
+    const { name, email, subject, message } = req.body;
     
     // Basic validation
     if (!name || !email || !subject || !message) {
@@ -40,24 +35,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: 'Invalid email format' });
     }
     
-    // Log the message (you can integrate with a database later)
-    console.log('Contact form submission:', { name, email, subject, message, timestamp: new Date().toISOString() });
-    
-    // You can integrate with services like:
-    // - Airtable
-    // - Google Sheets
-    // - EmailJS
-    // - Resend
-    // - Nodemailer
+    await db.insert(contactMessages).values({
+      name,
+      email,
+      subject,
+      message
+    });
     
     return res.status(200).json({ 
-      message: 'Message sent successfully!',
-      data: {
-        name,
-        email,
-        subject,
-        timestamp: new Date().toISOString()
-      }
+      message: 'Message sent successfully!'
     });
   } catch (error) {
     console.error('Contact form error:', error);

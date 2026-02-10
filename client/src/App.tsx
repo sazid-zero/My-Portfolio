@@ -7,6 +7,8 @@ import Portfolio from "@/pages/portfolio";
 import ProjectsPage from "@/pages/projects-page";
 import ProjectDetail from "@/pages/project-detail";
 import NotFound from "@/pages/not-found";
+import Login from "@/pages/login";
+import AdminDashboard from "@/pages/admin-dashboard";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useScrollRestoration } from "@/hooks/use-scroll-restoration";
 import Lenis from "lenis";
@@ -59,6 +61,11 @@ function App() {
                     <Route path="/" element={<Portfolio />} />
                     <Route path="/projects" element={<ProjectsPage />} />
                     <Route path="/projects/:id" element={<ProjectDetail />} />
+                    
+                    {/* Admin Routes */}
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/admin" element={<AdminDashboard />} />
+
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </Router>

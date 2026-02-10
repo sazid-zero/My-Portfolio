@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
  
-import { getProjectById, Project } from '@/data/projects';
+import { useQuery } from '@tanstack/react-query';
+import { type Project } from '@shared/schema';
+import { Loader2 } from 'lucide-react';
 import Navigation from '@/components/navigation';
 import ReactMarkdown from 'react-markdown';
 
@@ -11,18 +13,28 @@ export default function ProjectDetail() {
   const viewport = useMotionViewport();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [project, setProject] = useState<Project | null>(null);
 
-  useEffect(() => {
-    if (id) {
-      const foundProject = getProjectById(id);
-      setProject(foundProject || null);
+  const { data: project, isLoading } = useQuery<Project>({
+    queryKey: ['project', id],
+    queryFn: async () => {
+      if (!id) throw new Error("No ID");
+      const res = await fetch(`/api/projects/${id}`);
+      if (!res.ok) throw new Error('Failed to fetch project');
+      return res.json();
     }
-  }, [id]);
+  });
 
   const handleBackToProjects = () => {
     navigate('/projects');
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-slate-deep text-slate-light flex items-center justify-center">
+        <Loader2 className="w-10 h-10 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   if (!project) {
     return (
@@ -179,25 +191,25 @@ export default function ProjectDetail() {
             <div className="bg-slate-900/50 rounded-2xl p-8">
               <ReactMarkdown
                 components={{
-                  h1: ({ children }) => <h1 className="text-3xl font-bold text-gradient mb-6">{children}</h1>,
-                  h2: ({ children }) => <h2 className="text-2xl font-bold text-primary mb-4 mt-8">{children}</h2>,
-                  h3: ({ children }) => <h3 className="text-xl font-bold text-accent mb-3 mt-6">{children}</h3>,
-                  p: ({ children }) => <p className="text-gray-300 mb-4 leading-relaxed">{children}</p>,
-                  ul: ({ children }) => <ul className="text-gray-300 mb-4 ml-6">{children}</ul>,
-                  li: ({ children }) => <li className="mb-2 list-disc">{children}</li>,
-                  code: ({ children }) => (
+                  h1: ({ children }: any) => <h1 className="text-3xl font-bold text-gradient mb-6">{children}</h1>,
+                  h2: ({ children }: any) => <h2 className="text-2xl font-bold text-primary mb-4 mt-8">{children}</h2>,
+                  h3: ({ children }: any) => <h3 className="text-xl font-bold text-accent mb-3 mt-6">{children}</h3>,
+                  p: ({ children }: any) => <p className="text-gray-300 mb-4 leading-relaxed">{children}</p>,
+                  ul: ({ children }: any) => <ul className="text-gray-300 mb-4 ml-6">{children}</ul>,
+                  li: ({ children }: any) => <li className="mb-2 list-disc">{children}</li>,
+                  code: ({ children }: any) => (
                     <code className="bg-slate-800 px-2 py-1 rounded text-accent font-mono text-sm">
                       {children}
                     </code>
                   ),
-                  pre: ({ children }) => (
+                  pre: ({ children }: any) => (
                     <pre className="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4">
                       {children}
                     </pre>
                   ),
                 }}
               >
-                {project.fullDescription}
+                {project.content || project.description}
               </ReactMarkdown>
             </div>
           </Motion.div>

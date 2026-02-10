@@ -2,7 +2,8 @@
 import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
  
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
-import { getFeaturedProjects } from '@/data/projects';
+import { useQuery } from '@tanstack/react-query';
+import { type Project } from '@shared/schema';
 import { useNavigate } from 'react-router-dom';
 
 export default function ProjectsSection() {
@@ -10,7 +11,18 @@ export default function ProjectsSection() {
   const viewport = useMotionViewport();
   const scrollRevealRef = useScrollReveal();
   const navigate = useNavigate();
-  const projects = getFeaturedProjects();
+
+  const { data: allProjects } = useQuery<Project[]>({
+    queryKey: ['projects'],
+    queryFn: async () => {
+      const res = await fetch('/api/projects');
+      if (!res.ok) throw new Error('Failed to fetch projects');
+      return res.json();
+    }
+  });
+
+  // Filter featured projects and take top 4
+  const projects = allProjects?.filter(p => p.featured).slice(0, 4) || [];
 
   const techColors = {
     'React': 'bg-primary/80',
@@ -31,7 +43,7 @@ export default function ProjectsSection() {
     'OAuth': 'bg-secondary/80'
   };
 
-  const handleViewDetails = (projectId: string) => {
+  const handleViewDetails = (projectId: number) => {
     navigate(`/projects/${projectId}`);
   };
 

@@ -1,20 +1,40 @@
-import { useState, useEffect } from 'react';
-import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
- 
+import { useState, useMemo } from 'react';
+import { useMotionComponents } from '@/hooks/use-motion-components';
 import { useNavigate } from 'react-router-dom';
-import { getAllProjects, getProjectsByCategory } from '@/data/projects';
 import Navigation from '@/components/navigation';
+import { useQuery } from '@tanstack/react-query';
+import { type Project } from '@shared/schema';
+import { Loader2 } from 'lucide-react';
 
 export default function ProjectsPage() {
   const Motion = useMotionComponents();
-  const viewport = useMotionViewport();
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [displayedProjects, setDisplayedProjects] = useState(getAllProjects());
 
-  const categories = ['All', 'E-Commerce', 'Productivity', 'Dashboard', 'Analytics', 'Finance', 'AI/ML', 'Health'];
+  const { data: projects, isLoading } = useQuery<Project[]>({
+    queryKey: ['projects'],
+    queryFn: async () => {
+      const res = await fetch('/api/projects');
+      if (!res.ok) throw new Error('Failed to fetch projects');
+      return res.json();
+    }
+  });
 
-  const techColors = {
+  const categories = ['All', 'Frontend', 'Fullstack', 'Mobile Apps', 'Games'];
+
+  const filteredProjects = useMemo(() => {
+    if (!projects) return [];
+    if (selectedCategory === 'All') return projects;
+    return projects.filter(p => p.category === selectedCategory);
+  }, [projects, selectedCategory]);
+
+  const getCategoryCount = (category: string) => {
+    if (!projects) return 0;
+    if (category === 'All') return projects.length;
+    return projects.filter(p => p.category === category).length;
+  };
+
+  const techColors: Record<string, string> = {
     'React': 'bg-primary/80',
     'TailwindCSS': 'bg-secondary/80',
     'Node.js': 'bg-accent/80',
@@ -42,21 +62,21 @@ export default function ProjectsPage() {
     'AWS': 'bg-secondary/80'
   };
 
-  useEffect(() => {
-    if (selectedCategory === 'All') {
-      setDisplayedProjects(getAllProjects());
-    } else {
-      setDisplayedProjects(getProjectsByCategory(selectedCategory));
-    }
-  }, [selectedCategory]);
-
-  const handleViewDetails = (projectId: string) => {
+  const handleViewDetails = (projectId: number) => {
     navigate(`/projects/${projectId}`);
   };
 
   const handleBackToPortfolio = () => {
     navigate('/');
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-slate-deep text-slate-light flex items-center justify-center">
+        <Loader2 className="w-10 h-10 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-deep text-slate-light">
@@ -106,13 +126,16 @@ export default function ProjectsPage() {
                 onClick={() => setSelectedCategory(category)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 ${
                   selectedCategory === category
                     ? 'bg-primary text-white'
                     : 'glass-morphism hover:bg-primary/20'
                 }`}
               >
-                {category}
+                <span>{category}</span>
+                <span className={`text-xs px-2 py-0.5 rounded-full ${selectedCategory === category ? 'bg-white/20' : 'bg-slate-700/50'}`}>
+                    {getCategoryCount(category)}
+                </span>
               </Motion.button>
             ))}
           </Motion.div>
@@ -122,7 +145,7 @@ export default function ProjectsPage() {
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             layout
           >
-            {displayedProjects.map((project, index) => (
+            {filteredProjects.map((project, index) => (
               <Motion.div
                 key={project.id}
                 layout
@@ -163,21 +186,21 @@ export default function ProjectsPage() {
                     >
                       {project.title}
                     </Motion.h3>
-                    <p className="text-gray-400 mb-4 leading-relaxed flex-1 text-sm">
+                    <p className="text-gray-400 mb-4 leading-relaxed flex-1 text-sm line-clamp-3">
                       {project.description}
                     </p>
 
                     {/* Technologies */}
                     <div className="flex gap-2 flex-wrap mb-4">
-                      {project.technologies.slice(0, 3).map((tech, techIndex) => (
+                      {project.technologies?.slice(0, 3).map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className={`px-2 py-1 ${techColors[tech as keyof typeof techColors] || 'bg-primary/80'} rounded-full text-xs font-semibold`}
+                          className={`px-2 py-1 ${techColors[tech] || 'bg-primary/80'} rounded-full text-xs font-semibold`}
                         >
                           {tech}
                         </span>
                       ))}
-                      {project.technologies.length > 3 && (
+                      {project.technologies?.length > 3 && (
                         <span className="px-2 py-1 bg-gray-600/80 rounded-full text-xs font-semibold">
                           +{project.technologies.length - 3}
                         </span>
@@ -185,7 +208,7 @@ export default function ProjectsPage() {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center mt-auto">
                       <div className="flex gap-3">
                         <Motion.a
                           whileHover={{ scale: 1.1, y: -2 }}
@@ -223,7 +246,7 @@ export default function ProjectsPage() {
           </Motion.div>
 
           {/* No Projects Message */}
-          {displayedProjects.length === 0 && (
+          {filteredProjects.length === 0 && (
             <Motion.div 
               className="text-center py-16"
               initial={{ opacity: 0 }}
