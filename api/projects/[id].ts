@@ -1,7 +1,6 @@
-// api/projects/[id].ts
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { db } from '../../server/db';
-import { projects, insertProjectSchema } from '../../shared/schema';
+import { db } from '../_db';
+import { projects, insertProjectSchema } from '../_schema';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 

@@ -29,9 +29,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     let drizzleError = null;
     try {
       // @ts-ignore
-      const { db } = await import('../server/db'); 
+      const { db } = await import('./_db'); 
       // @ts-ignore
-      const { projects } = await import('../shared/schema');
+      const { projects } = await import('./_schema');
       drizzleResult = await db.select().from(projects).limit(2);
     } catch (e) {
       drizzleError = String(e);
