@@ -24,11 +24,27 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Try raw select
     const rawProjects = await sql`SELECT * FROM projects LIMIT 5`;
 
+    // Try Drizzle select
+    let drizzleResult = null;
+    let drizzleError = null;
+    try {
+      // @ts-ignore
+      const { db } = await import('../server/db'); 
+      // @ts-ignore
+      const { projects } = await import('../shared/schema');
+      drizzleResult = await db.select().from(projects).limit(2);
+    } catch (e) {
+      drizzleError = String(e);
+    }
+
     return res.status(200).json({
       status: 'success',
       tableExists: tableExists[0].exists,
       columns,
-      rawProjects
+      rawProjectsCount: rawProjects.length,
+      drizzleSuccess: !!drizzleResult,
+      drizzleError,
+      drizzleResult
     });
 
   } catch (error) {
