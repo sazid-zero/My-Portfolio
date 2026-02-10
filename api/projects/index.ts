@@ -1,8 +1,39 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { db } from '../_db'; 
-import { projects, insertProjectSchema } from '../_schema';
+import { neon } from '@neondatabase/serverless';
+import { drizzle } from 'drizzle-orm/neon-http';
+import { pgTable, text, serial, boolean, timestamp } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
 import { desc } from 'drizzle-orm';
 import { z } from 'zod';
+
+// --- INLINED SCHEMA & DB SETUP ---
+// Inlined to avoid Vercel module resolution issues with shared files
+const projects = pgTable("projects", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  image: text("image").notNull(),
+  technologies: text("technologies").array().notNull(), 
+  liveUrl: text("live_url").notNull(),
+  githubUrl: text("github_url").notNull(),
+  category: text("category", { enum: ['Frontend', 'Fullstack', 'Mobile Apps', 'Games'] }).notNull(),
+  featured: boolean("featured").default(false).notNull(),
+  content: text("content"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+const insertProjectSchema = createInsertSchema(projects).pick({
+  title: true,
+  description: true,
+  content: true,
+  image: true,
+  technologies: true,
+  liveUrl: true,
+  githubUrl: true,
+  category: true,
+  featured: true,
+});
+// --------------------------------
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Enable CORS
@@ -19,25 +50,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
+  // Initialize DB connection per request to ensure reliability in serverless
+  if (!process.env.DATABASE_URL) {
+    return res.status(500).json({ error: "DATABASE_URL configuration missing" });
+  }
+  const sql = neon(process.env.DATABASE_URL);
+  const db = drizzle(sql);
+
   // GET /api/projects - List all projects
   if (req.method === 'GET') {
     try {
-      console.log("Attempting to fetch projects...");
-      console.log("Database URL present:", !!process.env.DATABASE_URL);
-      
       const allProjects = await db.select().from(projects).orderBy(desc(projects.createdAt));
-      
-      console.log("Successfully fetched projects:", allProjects.length);
       return res.status(200).json(allProjects);
     } catch (error) {
-      console.error("CRITICAL ERROR fetching projects:", error);
-      // @ts-ignore
-      if (error.message) console.error("Error message:", error.message);
-      // @ts-ignore
-      if (error.code) console.error("Error code:", error.code);
+      console.error("Error fetching projects:", error);
       return res.status(500).json({ 
         error: "Failed to fetch projects", 
-        details: String(error) 
+        details: String(error)
       });
     }
   }

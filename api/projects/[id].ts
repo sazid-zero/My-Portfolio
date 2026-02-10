@@ -1,8 +1,38 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { db } from '../_db';
-import { projects, insertProjectSchema } from '../_schema';
+import { neon } from '@neondatabase/serverless';
+import { drizzle } from 'drizzle-orm/neon-http';
+import { pgTable, text, serial, boolean, timestamp } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
+
+// --- INLINED SCHEMA & DB SETUP ---
+const projects = pgTable("projects", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  image: text("image").notNull(),
+  technologies: text("technologies").array().notNull(), 
+  liveUrl: text("live_url").notNull(),
+  githubUrl: text("github_url").notNull(),
+  category: text("category", { enum: ['Frontend', 'Fullstack', 'Mobile Apps', 'Games'] }).notNull(),
+  featured: boolean("featured").default(false).notNull(),
+  content: text("content"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+const insertProjectSchema = createInsertSchema(projects).pick({
+  title: true,
+  description: true,
+  content: true,
+  image: true,
+  technologies: true,
+  liveUrl: true,
+  githubUrl: true,
+  category: true,
+  featured: true,
+});
+// --------------------------------
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Enable CORS
@@ -18,6 +48,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     res.status(200).end();
     return;
   }
+
+  // Initialize DB connection per request
+  if (!process.env.DATABASE_URL) {
+    return res.status(500).json({ error: "DATABASE_URL configuration missing" });
+  }
+  const sql = neon(process.env.DATABASE_URL);
+  const db = drizzle(sql);
 
   const { id } = req.query;
   if (!id || Array.isArray(id)) {
