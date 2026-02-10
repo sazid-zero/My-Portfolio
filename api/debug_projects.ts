@@ -1,5 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { neon } from '@neondatabase/serverless';
+// Static imports to ensure Vercel bundles these files
+import { db } from './_db';
+import { projects } from './_schema';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
@@ -28,10 +31,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     let drizzleResult = null;
     let drizzleError = null;
     try {
-      // @ts-ignore
-      const { db } = await import('./_db'); 
-      // @ts-ignore
-      const { projects } = await import('./_schema');
       drizzleResult = await db.select().from(projects).limit(2);
     } catch (e) {
       drizzleError = String(e);
