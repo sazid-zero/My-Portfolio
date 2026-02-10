@@ -23,11 +23,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // GET /api/projects - List all projects
   if (req.method === 'GET') {
     try {
+      console.log("Attempting to fetch projects...");
+      console.log("Database URL present:", !!process.env.DATABASE_URL);
+      
       const allProjects = await db.select().from(projects).orderBy(desc(projects.createdAt));
+      
+      console.log("Successfully fetched projects:", allProjects.length);
       return res.status(200).json(allProjects);
     } catch (error) {
-      console.error("Error fetching projects:", error);
-      return res.status(500).json({ error: "Failed to fetch projects" });
+      console.error("CRITICAL ERROR fetching projects:", error);
+      // @ts-ignore
+      if (error.message) console.error("Error message:", error.message);
+      // @ts-ignore
+      if (error.code) console.error("Error code:", error.code);
+      return res.status(500).json({ 
+        error: "Failed to fetch projects", 
+        details: String(error) 
+      });
     }
   }
 
