@@ -1,8 +1,10 @@
 import { useMotionComponents, useMotionViewport } from '@/hooks/use-motion-components';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 export default function HeroSection() {
   const Motion = useMotionComponents();
   const viewport = useMotionViewport();
+  const isMobile = useIsMobile();
   
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -14,73 +16,85 @@ export default function HeroSection() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-deep via-slate-800 to-slate-deep">
-        {/* Floating geometric shapes */}
-        <Motion.div
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 5, 0]
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-20 left-10 w-32 h-32 border border-primary/30 rounded-full"
-        />
-        <Motion.div
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, -5, 0]
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-          className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-r from-secondary/20 to-accent/20 rounded-lg rotate-45"
-        />
-        <Motion.div
-          animate={{
-            y: [0, -30, 0],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute bottom-32 left-1/4 w-40 h-40 border-2 border-accent/20 rounded-lg"
-        />
+      {/* Animated Background - Only on Desktop */}
+      {!isMobile && (
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-deep via-slate-800 to-slate-deep">
+          {/* Floating geometric shapes */}
+          <Motion.div
+            animate={{
+              y: [0, -20, 0],
+              rotate: [0, 5, 0]
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute top-20 left-10 w-32 h-32 border border-primary/30 rounded-full"
+          />
+          <Motion.div
+            animate={{
+              y: [0, -20, 0],
+              rotate: [0, -5, 0]
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+            className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-r from-secondary/20 to-accent/20 rounded-lg rotate-45"
+          />
+          <Motion.div
+            animate={{
+              y: [0, -30, 0],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute bottom-32 left-1/4 w-40 h-40 border-2 border-accent/20 rounded-lg"
+          />
 
-        {/* Gradient orbs */}
-        <Motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.5, 0.8, 0.5]
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-1/4 right-1/3 w-96 h-96 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl"
-        />
-        <Motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-          className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-accent/10 to-primary/10 rounded-full blur-3xl"
-        />
-      </div>
+          {/* Gradient orbs */}
+          <Motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.5, 0.8, 0.5]
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute top-1/4 right-1/3 w-96 h-96 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl"
+          />
+          <Motion.div
+            animate={{
+              scale: [1, 1.1, 1],
+              opacity: [0.3, 0.6, 0.3]
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+            className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-accent/10 to-primary/10 rounded-full blur-3xl"
+          />
+        </div>
+      )}
+      
+      {/* Static Background for Mobile */}
+      {isMobile && (
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-deep via-slate-900 to-slate-deep">
+           {/* Simple static gradient overlay if needed, or just plain background */}
+           <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-primary/5 rounded-full blur-3xl" />
+           <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-secondary/5 rounded-full blur-3xl" />
+        </div>
+      )}
 
       {/* Hero Content */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
@@ -94,7 +108,7 @@ export default function HeroSection() {
             className="text-6xl md:text-8xl font-bold mb-6 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={viewport}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <span className="text-gradient">Sharif</span><br />
@@ -105,7 +119,7 @@ export default function HeroSection() {
             className="text-xl md:text-2xl text-gray-300 mb-8 font-mono"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: false }}
+            viewport={viewport}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <span className="text-accent">&lt;</span>
