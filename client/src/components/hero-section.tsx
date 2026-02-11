@@ -121,7 +121,7 @@ export default function HeroSection() {
             </Motion.div>
 
             <Motion.h1
-              className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+              className="text-5xl md:text-7xl font-bold mb-2 sm:mb-6 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewport}
@@ -132,17 +132,17 @@ export default function HeroSection() {
             </Motion.h1>
 
             <Motion.div
-              className="text-2xl md:text-4xl text-white mb-8 font-bold"
+              className="text-lg md:text-2xl text-white mb-2 sm:mb-8 font-bold"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={viewport}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Software Developer
+              Software Engineer | Full Stack Developer
             </Motion.div>
 
             <Motion.p
-              className="text-base md:text-lg text-gray-400 mb-10 max-w-xl leading-relaxed"
+              className="text-base md:text-lg text-gray-400 mb-4 sm:mb-10 max-w-xl leading-relaxed"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: false }}
@@ -206,7 +206,7 @@ export default function HeroSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="flex-1 flex items-end justify-center relative min-h-[500px] lg:min-h-[600px]"
+            className="flex-1 flex items-end justify-center relative min-h-[300px] lg:min-h-[600px]"
           >
             {/* Decorative Tags */}
             <Motion.div
